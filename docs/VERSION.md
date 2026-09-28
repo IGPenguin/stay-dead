@@ -1,4 +1,4 @@
-## ver. 09/28/26 @ 11:16 PM
+## ver. 09/28/26 @ 11:28 AM
 🛡 Bump legendary items triggers to 50%
 🐾 Breather after taming a pet
 📖 UI, text and menu fixes
