@@ -1,6 +1,6 @@
 # EPICS.md — Major Expansion Plans
 
-*28 epics · last updated 2026-06-06*
+*30 epics · last updated 2026-08-30*
 
 ---
 
@@ -9,6 +9,7 @@
 ### [LOOT-CHCE] Epic: Loot Choice System — 3-item pick overlay on all loot events
 - When a player picks up loot (enemy drops, generator items, fishing catches, shop purchases), a 3-choice overlay appears showing three weighted-random items. Items reveal in auto-sequence animation; the player selects one, and the chosen raw CSV row is pushed via `pushEncounter + nextEncounter`, loading normally through all existing handlers.
 - Design complete as of 2026-05-31 Perseus session. Partial implementation in place (`game-state.js`, `string-generator.js`, `inventory-manager.js`, first-draft `loot-choice.js`). Supersedes and absorbs [LOOT-TEAS].
+- **Named the strongest early-hook candidate the project owns** by the 2026-08-30 studio session: it fires in the first handful of encounters with certainty, versus a crit-based hook that reaches only 26% of new players in their first ten encounters. Weigh it against [CHAIN-BAR] when choosing what to build for onboarding.
 - Priority: P1 — design complete, partial implementation in place; ready for a focused implementation session.
 - Type: Epic
 - Effort: L | Gain: XL
@@ -535,6 +536,198 @@ Any positive karma currently gives the same revive reward — should scale by ti
 
 ---
 
+### [CHAIN-BAR] Epic: Chained action bar — press-your-luck escalation on the skill check
+- Landing an action offers an immediate re-run of the action bar, narrower and faster, for a bonus. Land it again and it narrows again. The player can bank at any point. A miss costs only the accumulated bonus, never the hit already earned.
+- This is the early positive-feedback hook. Unlike a crit-based combo, every stage is a skill check the player *chose*, so it fires on run one, encounter one, at LCK 0.
+- Supersedes the early-hook framing of [CRIT-COMBO], which the 2026-08-30 studio meeting refiled as a run-3+ depth reward. Both may coexist; this one owns the onboarding job.
+- Priority: P2 — the concept and the code hooks are clear, but seamless integration with the turn order, stamina economy and existing bar UI is genuinely undefined. Design session before implementation.
+- Type: Epic
+- Effort: XL | Gain: XL
+- Prerequisites: none hard. Overlaps [DRAG-CNCL] (drag-off cancel must keep working mid-chain) and [SEQ-DELAY] (both change action pacing — sequence them, do not land blind).
+- Details: Source — Perseus meeting 2026-08-30 (`.perseus/2026-08-30-1824-interactive-hook.md`), chosen over three alternatives as the answer to "an interactive mechanic that goes bang bang, I want more".
+
+#### Design Brief
+
+##### Why this shape, and not a crit combo
+
+The predecessor design ([CRIT-COMBO]) chained *critical* successes. It was killed by arithmetic, recorded here so it is not re-proposed:
+
+- Crit zone at LCK 0 is 2% of the bar (`action-config.js:206`)
+- Expected attempts to a player's **first crit at all**: ~50, i.e. around encounter 33
+- Median completed run ends at encounterCount 34 (telemetry export, 68 `run_end` rows)
+- P(any crit in first 10 encounters): 26% at LCK 0, 46% at LCK 2, 60% at LCK 4
+- P(chain of 3) under the originally proposed rule: 0.00%-0.80% across every luck and zone width
+
+A new player met their first critical hit at roughly the moment they died. **Any hook built on a 2-7% random event cannot be an early hook.** The chain fixes this by making the trigger a player decision rather than a dice roll.
+
+##### The premise argument (why this belongs in Stay Dead specifically)
+
+Stay Dead is about a man who botched a resurrection because he would not accept a limit — he reached one more time and corrupted the world. A mechanic whose entire question is *"you have enough. Will you reach again?"* is the game's own premise made playable, not a combo meter with a grief skin. This is the test any variant of this feature must keep passing.
+
+Recorded as a standing studio position: see `.perseus/positions.md` → Hardcore Fan, "mechanics as premise".
+
+##### What already exists
+
+| Piece | Where | Note |
+|---|---|---|
+| Bar lifecycle | `action-bar.js:54` `showActionBar(config, onResolve, sourceEl)` | Config-driven zones; re-invocable |
+| Resolve + timing | `action-bar.js:215` `_resolve()`; constants at `:19-21` | 300ms fade-in → 800ms hold → 220ms fade-out, then `display:none` |
+| Zone calculation | `action-config.js` `calcActionBarConfig()` | Already returns `successMin/Max`, crit zones, `speed`, `dangerZones`, `barStyle` |
+| Result text | `#id_action_bar_result`, labels `action-bar.js:9-12` | Styled in `_sass/jekyll-theme-minimal.scss:361` |
+| Cancel gesture | `action-bar.js:302` `_cancel()`, `_setOutside()` | Drag off the button to abort |
+| Haptics | `ui-effects.js:731,742` `navigator.vibrate` | Barely used; the only "bang" channel on a muted phone |
+| Difficulty scaling | `GAME_CONFIG.zoneMult`, `ACTION_BAR_SPEED_MULT` | Chain curve must compose with these, not fight them |
+
+##### Open decisions — none of these are settled
+
+**Turn order (the biggest one).** After a player action resolves, the enemy responds (`enemy-skills.js`). Does the chain run entirely *before* the enemy's turn, or does the enemy act between stages? Running the whole chain first is simpler and reads as one flurry; interleaving is more tense but makes the bonus meaningless if the player dies mid-chain. **This decision shapes everything else.**
+
+**Stamina.** Every combat action costs STA. Options: (a) chain stages are free — simplest, but breaks the STA economy that currently paces combat; (b) each stage costs STA — self-limiting, elegant, and means the chain naturally ends when you are exhausted; (c) the chain costs STA only if you bank it. Option (b) is the one most consistent with existing systems, but it needs checking against low-STA builds.
+
+**What the bonus actually is.** Original note asked for "extra temp stat boost?" — still open. Candidates: escalating damage on this action; a temporary stat that decays; bonus XP; improved loot rarity on the resulting drop. Must not double-count with the existing `playerCritSuccesses` +1 in `_computeComponents` (`score-manager.js:109`).
+
+**Which actions can chain.** All nine, or only some? Chaining Attack reads naturally. Chaining Sleep, Speak or Pray may not — and Curse raises the same karma/tone question flagged on [CRIT-COMBO]: should a morally negative action get the same escalating reward? Non-combat bars (fishing, containers, shop) are a separate call again.
+
+**The escalation curve.** Genre warning from the meeting: press-your-luck dies if the optimal play is obvious. If banking at stage 2 is always correct, everyone banks at 2 and the mechanic is decoration. The curve must keep the next stage genuinely tempting and genuinely scary. Needs numbers, not vibes — Balance Designer input.
+
+**Cost of a miss.** The meeting settled that a miss loses only the accumulated bonus, never the already-earned hit — that is what made the Casual Gamer accept the feature ("failing is me being greedy, not me being bad"). Open: does the enemy also get a free response, or is losing the bonus the whole punishment?
+
+**Crit interaction.** A crit landed *inside* a chain — bigger step, or just a normal step with better text?
+
+**Reincarnation / ending state.** `isEndingState` routes the bar through `resolveEnding()`. The chain must be suppressed there, or the nine ending choices become a skill-check minigame.
+
+##### Hard requirements (UI/UX, non-negotiable)
+
+- **Instant re-arm.** The current `_resolve()` path holds 800ms then fades over 220ms then hides. A chain cannot use it — the bar must stay up and re-arm with no fade cycle, or the rhythm dies.
+- **Thumb-safe.** If the bar re-arms under a finger that is still moving, it will register accidental releases and players will feel robbed. Needs an explicit re-arm delay or a require-lift-first guard. This is a correctness requirement on mobile, not polish.
+- **Bankable without a second button.** Adding a "Bank" button doubles the tap targets during the most time-pressured moment in the game. Prefer: doing nothing banks automatically after a short window, and only an active press continues the chain.
+- **No `×N` in the bar text.** DESIGN.md: *"if a line could appear unchanged in any other game's status bar, it is not good enough."* All chain text lives in `string-generator.js` per CLAUDE.md, in Stay Dead's register.
+
+##### Implementation surface
+
+`action-bar.js` (chain loop, re-arm path bypassing the fade cycle), `action-config.js` (per-stage zone narrowing), `action-resolver.js` (bonus application at the existing crit hook), `game-state.js` (chain state), `player-skills.js` (reset in `renewPlayer()`), `save-manager.js` (only if chain state can survive a page hide — see below), `string-generator.js` (all text), `enemy-skills.js` (turn-order deferral), `_sass/jekyll-theme-minimal.scss` (stage styling).
+
+Chain state is intra-action, so it likely needs no persistence — **but** the page-hide path added 2026-08-30 (`run_exit`) means a player can background the tab mid-chain. Decide whether that banks, voids, or restores.
+
+##### Testing Checklist
+
+- [ ] Stage one resolves exactly as it does today when the player declines to chain
+- [ ] A miss at stage N keeps the stage-one result and loses only the bonus
+- [ ] Bar re-arms with no visible fade cycle between stages
+- [ ] Re-arming under a held/moving finger does not register a release
+- [ ] Drag-off cancel still aborts cleanly mid-chain, at every stage
+- [ ] Enemy response fires at the agreed point in the turn order, exactly once
+- [ ] Chain is fully suppressed in `isEndingState`
+- [ ] Chain state resets in `renewPlayer()` and cannot leak between runs
+- [ ] Backgrounding the tab mid-chain behaves per the agreed rule
+- [ ] Bonus does not double-count against `playerCritSuccesses` in the score
+- [ ] Reachable and legible at LCK 0 on the first encounter of a fresh run
+- [ ] Composes correctly with every `DIFFICULTY_MODES.zoneMult` value
+- [ ] `bash scripts/validate-all.sh` and `bash scripts/test-all.sh` pass
+
+---
+
+### [CRIT-COMBO] ~Epic: Critical Combo System — chained crits as a late-game luck payoff
+- Consecutive critical successes on the skill-check action bar build a combo counter. Holding a combo grants a score bonus and a temporary stat boost; breaking the combo loses both.
+- **Refiled 2026-08-30 as a run-3+ depth reward, NOT an early hook.** The studio meeting established that a player's first crit lands around encounter 33 while the median run ends at encounter 34 — a crit-based reward is invisible to new players. [CHAIN-BAR] now owns the onboarding job; this remains a luck-build payoff for players who have invested in LCK.
+- **Break condition settled by the same meeting:** advance on crit success, break on **crit fail only** — plain success and plain fail are both neutral. That is the only variant with workable odds: P(chain of 3) = 0.5% at LCK 0, 12.5% at LCK 4, 47% at LCK 8. It is flat across enemy difficulty, so the chain measures the player's crit skill rather than how easy the fight was. The originally proposed "any fail breaks" rule is dead — it produces P(chain of 3) under 1% at every luck value, because inserting neutral outcomes changes the pacing of the race but not the odds.
+- Depends on [CRIT-LCK] (TODOs) to be worth building at all: without it the feature is dead below LCK 2.
+- Priority: P2 — concept and break rule now settled, but it is gated behind [CRIT-LCK] and behind [CHAIN-BAR] proving the appetite for escalation mechanics at all. Do not build both blind.
+- Type: Epic
+- Effort: L | Gain: L
+- Prerequisites: none hard. [CRIT-LCK] (TODOs P3) reworks the crit zone width formulas this system sits on — if both are planned, land CRIT-LCK first or the combo will need retuning immediately.
+- Details: Source — user note 2026-08-30: "when you consistently hit critical you would get score bonus and some gameplay bonus (extra temp stat boost?) that would be lost on failing combo, the combo also needs to display with a bang - within the skill check bar text". The question mark on "temp stat boost" is preserved deliberately as open scope.
+
+#### Design Brief
+
+##### What already exists (verified 2026-08-30)
+
+This system has more of its foundation in place than it first appears. Nothing below needs to be built from scratch:
+
+| Piece | Where | State |
+|---|---|---|
+| Crit detection | `action-bar.js:_resolve()` lines 227-234 | Computes `critResult` as `'success'` / `'fail'` / `null`, passes it to `_onResolve(isSuccess, val, critResult)` |
+| Crit consumption | `action-resolver.js:9-16` | Already reads `actionBarCrit` and increments `playerCritSuccesses` / `playerCritFails`. **This is the combo hook.** |
+| Score weighting | `score-manager.js:109` `_computeComponents(...)` | Crits already feed the score at +1 each, crit fails at -1 each |
+| Result text element | `#id_action_bar_result` (`index.md:595`) | Already renders `LABEL_CRIT_SUCESS = 'CRITICAL!'` with class `result-crit-pass`; styled at `_sass/jekyll-theme-minimal.scss:361` |
+| Result timing | `action-bar.js:19-21` | `T_RESULT_FADE_IN` 300ms → `T_RESULT_HOLD` 800ms → `T_BAR_FADEOUT` 220ms |
+| Run reset | `player-skills.js:63-64` in `renewPlayer()` | Existing pattern for resetting crit counters |
+| Persistence | `save-manager.js:84-85` (save) + `:179-180` (restore) | Existing pattern; **both must be updated** for any new run-state variable |
+
+##### The blocking design question: what breaks a combo?
+
+This is the decision the whole feature hinges on, and it cannot be answered without the crit zone maths.
+
+Main-path crit zones (`action-config.js:206-208`):
+- `critSuccessW = min(7, max(1, round((2 + pLck * 0.6) * 1.25)))`
+- `critFailW = min(10, max(1, round(5 - pLck * 0.5)))` — applied at **both** edges of the bar
+
+Which produces:
+
+| Player LCK | Crit success zone | Crit fail zone (both edges) | Fail : success ratio |
+|---|---|---|---|
+| 0 | 2% | 10% | **5.0x** |
+| 2 | 4% | 8% | 2.0x |
+| 4 | 6% | 6% | 1.0x |
+| 6 | 7% | 4% | 0.6x |
+| 8+ | 7% | 2% | 0.3x |
+
+**The consequence:** if the combo advances only on a crit success and breaks on anything else, a 3-chain at LCK 0 has roughly a 1-in-125,000 chance. The feature would be invisible to almost every player — and the export shows most runs end at level 1, meaning most players never reach high luck. Worse, at low luck a crit *fail* is 5x more likely than a crit success, so a naive "breaks on crit fail" rule still punishes low-luck players far more than it rewards them.
+
+Options to resolve in the design session, none pre-selected:
+1. **Combo advances on any success, breaks on any fail.** Reachable but no longer about crits; contradicts the note's "consistently hit critical".
+2. **Advances on crit success, breaks only on crit fail.** Plain successes and plain failures are neutral. Combos become long, slow, and rare — a deep-run reward. Still 5x adverse at LCK 0.
+3. **Advances on crit success, breaks on any fail.** Closest to the literal note; near-unreachable below LCK 4 without widening crit zones.
+4. **Widen crit zones as part of this feature**, folding [CRIT-LCK] in and treating combo reachability as the tuning target.
+5. **Luck-scaled break tolerance** — a low-luck player gets a grace hit before the combo drops.
+
+Whichever is chosen, the same question applies to whether the combo persists across encounters or resets at each new encounter. `encounterRenew()` in `encounter-loader.js` is the natural reset point if it resets.
+
+##### Open decisions (do not resolve without a design session)
+
+1. **Break condition** — see above. The blocker.
+2. **Reward shape** — flat score bonus per combo step, or a multiplier on the run score? A multiplier interacts with the existing +1-per-crit in `_computeComponents` and could double-count.
+3. **Temp stat boost** — which stat? Fixed (always ATK) or matched to the action that built the combo? The user note leaves this open with a question mark.
+4. **Boost duration** — until the combo breaks, for N actions, or for the current encounter? "Lost on failing combo" in the note suggests until-break, which makes the boost a visible thing the player is protecting.
+5. **Boost stacking** — does a 5-combo give 5x the boost, or does it plateau? Uncapped scaling on a `playerAtk` boost would break late-game balance fast.
+6. **Interaction with existing crit score** — does the combo replace the current +1/-1 per crit, or stack on top of it?
+7. **Karma and tone** — should a combo built on Curse actions grant the same reward? DESIGN.md's grief-as-armor tone may argue against rewarding a "streak" on morally negative actions the way it rewards one on Attack.
+8. **Does the combo survive a reincarnation?** `playerReincarnate()` deliberately preserves run progression. A combo surviving death would be strange; losing it silently would also be strange.
+
+##### Display: "with a bang"
+
+The user's note places the combo display **inside the skill check bar text** — the `#id_action_bar_result` overlay, not a new HUD element.
+
+- Extend the result text rather than replacing it: `CRITICAL!` becomes something like `CRITICAL! ×3` at combo 3. Keep the existing `result-crit-pass` class and add a combo-tier modifier class for escalating treatment (brighter, larger, more stroke) as the count climbs.
+- The result overlay is transient — visible for ~1.1s total. **Open question:** is that enough for the player to register a running combo, or does the combo also need a persistent indicator near the player status bar (`#id_player_status`)? The note only asks for the bar text; adding a HUD element is scope beyond it and should be an explicit decision.
+- The break needs its own beat. A combo dropping from 4 to 0 should read as a loss, not just an absent number. Candidate: a distinct label on the breaking hit.
+- Existing hooks to reuse rather than reinvent: `animateUIElement(viewport, "animate__shakeX", "0.6")` already fires on crit success at `action-resolver.js:11-12`; scale intensity with combo depth. [FLASH-CRIT] (EPICS P4) proposes a `.flash-crit` card animation — bundle it here, it is the same feature surface.
+- **All player-facing combo text must live in `string-generator.js`** as named `chooseFrom([...])` pools per CLAUDE.md. The `LABEL_*` constants at `action-bar.js:9-12` are the current exception; do not add more literals there.
+
+##### Implementation surface
+
+New run state in `game-state.js`: current combo count, best combo this run, active temp boost value. All three need resetting in `renewPlayer()` (`player-skills.js`) **and** adding to both `saveGameState()` and `restoreGameState()` in `save-manager.js`.
+
+Touched: `game-state.js`, `action-resolver.js` (combo advance/break at the existing crit hook), `action-bar.js` (result text + classes), `player-skills.js` (reset), `save-manager.js` (persist, both directions), `score-manager.js` (score contribution), `string-generator.js` (text pools), `_sass/jekyll-theme-minimal.scss` (combo tier styling). Seven-plus files across four systems — this is why it is an epic rather than a backlog item.
+
+Telemetry: the `^k=v` context pack shipped 2026-08-30, so best-combo-this-run is a cheap addition to `_pack()` in `js/telemetry.js` and would show whether the tuning actually lands.
+
+##### Testing Checklist
+
+- [ ] Combo counter increments on the chosen advance condition and displays in the bar result text
+- [ ] Combo breaks on the chosen break condition and the temp stat boost is removed at the same moment
+- [ ] Broken combo reads as a loss to the player, not just a missing number
+- [ ] Combo and boost reset to zero in `renewPlayer()` on a fresh run
+- [ ] Combo and boost survive a save/reload mid-run (verify both `saveGameState` and `restoreGameState`)
+- [ ] Temp stat boost does not leak into the persisted permanent stat, and does not survive the run
+- [ ] Score contribution does not double-count against the existing `playerCritSuccesses` +1
+- [ ] Reachable in a real run at LCK 0-2, not only at high luck — playtest specifically at low luck
+- [ ] Combo display does not overflow or clip the result overlay at the highest combo tier
+- [ ] Behaviour on reincarnation matches whatever decision 8 lands on
+- [ ] `bash scripts/validate-js.sh` and `bash scripts/test-all.sh` pass
+
+---
+
 ### [HCORE-END] Epic: Hardcore difficulty — Dream Boss ending
 - On Hardcore only: inject a pre-boss story beat in Shrouded Necropolis revealing the corrupted world was always a dream. The final boss fight is kept; after the boss is defeated, a post-fight cutscene plays — Rosabel disintegrates and the dream unravels, reframing the entire run.
 - Three beats: (1) pre-boss dream revelation encounter 💭, (2) the boss fight (optional mechanical twist TBD), (3) post-boss cutscene that triggers the win state.
@@ -840,4 +1033,4 @@ The dog's warning (from [PET-ENCNTR]) is what makes the crossroads matter — it
 
 ---
 
-*EPICS.md — 28 epics*
+*EPICS.md — 30 epics*

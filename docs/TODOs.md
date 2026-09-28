@@ -1,8 +1,6 @@
 # Styx Flow — 2026-06-01 — Stay Dead
 
-*~107 items · 2026-06-08: -1 resolved (CRED-TEST — credits bug fixed in code), +3 (INV-FADE, DRAG-CNCL from medusa drift jar; SHOP-SPAWN user-flagged) · prior: 2026-06-06: -2 resolved (WEAP-CMBO done in commits, HIST-UI executed — dual-stat combo weapons added in commit b53ed63) · prior: 2026-06-02: -4 resolved (VER-BUMP, CHEAT-SUBM, CHEAT-TIPS, COMP-PARTY), +1 (BOSS-TELE) · prior: 2026-06-01: +1 (ORIG-ROLL) — Origins picker reroll button, user-flagged P1 · prior: 2026-06-01: Styx re-sort — Backlog and Technical Debt integrated into P3/P4, [SCROLL-GAP] promoted to P2, [ORIG-ITEMS] cleaned, [COMP-PLAY] flagged (assumed shipped — not found in backlog) · prior: 2026-06-01: +24 new items (FAIR-PETS, BAIT-LOOT, WHIP-ITEM, MED-ITEMS, FAIR-WORM, FAIR-MINST, BOSS-TOUGH, AREA-STATS, FRIEND-MIN, BASIC-ORIG, CHEAT-TIPS, CHEAT-SUBM, PERS-REVW, ITCH-WRPR, COMP-PARTY, CRED-TEST, TEST-RUNS, VALID-ERR, VER-BUMP, PR-SUMRY, FISH-ABAR, TELE-ENHA, ORIG-PET), LOOT-TEAS moved from Backlog to SPRINT, HIDE-DRM removed — likely resolved by 05/24/26 "Replace Necropolis story beats on NG+" commit (verify via TEST-RUNS), UNDEAD-MGK scope expanded to all non-caster enemy types · prior: 2026-05-24: +2 (DAILY-QUST, HALF-STAT) · prior: 2026-05-21: -3 done/resolved (DEATH-MSG, KILL-LINE, GAME-ENDS), +11 from post-playtest notes (END-DUPE, POOL-GAP, UNDEAD-MGK, SCROLL-GAP, END-ACHIEV, SHOP-BOOST, NECRO-PROP, WEAP-CMBO, HIDE-DRM, BAL-AUDIT, END-SCORE), LOOT-TEAS moved from Backlog to SPRINT · prior: 2026-05-16: +1 (BARK-CTX); prior: +2 (LOOT-TEAS, LOOT-ANIM); prior: +2 (PET-ENCNTR, PET-SLOT), 3 expanded (COMP-PLAY, ENC-PREGEN, PATH-CHOICE); prior: SPRINT block from Perseus 2026-05-15*
-
----
+*~71 items · 2026-09-11: +3 (ROSA-EARLY P2; PNUM-RESET, BAR-STATS P3), [CRIT-LCK] re-scored P3->~P2 on new crit-zone math — capturing open threads from the 2026-08-30 telemetry + studio sessions before session close · prior: ~68 items · 2026-08-30 (2nd pass): +1 (EMOJI-HURT P2), [SEQ-DELAY] promoted P3->P1 and expanded (user-directed); [CHAIN-BAR] added to EPICS.md P2 and [CRIT-COMBO] refiled there as a depth feature — all from the interactive-hook studio session · prior: ~67 items · 2026-08-30: -5 resolved in code (TELE-EXIT, TELE-PACK, TELE-HUMAN, TELE-PLAY, TELE-MENU — run_exit/menu_leave page-hide events, ^k=v payload context pack, interaction flag, active-playtime fix; 16 Playwright cases in tests/telemetry.spec.js, all green) · prior: ~72 items · 2026-08-30: +7 (TELE-EXIT, TELE-PACK, TELE-HUMAN, TELE-PLAY P1; TELE-MENU P2; REVIVE-HYPO, NEAR-MISS P3) from telemetry gap analysis of the 2026-07-04→2026-08-24 Google Form export (533 rows, 37 users, 147 sessions); all instrumentation items constrained to game-side changes only — no Google Form edits · prior: ~107 items · 2026-06-08: -1 resolved (CRED-TEST — credits bug fixed in code), +3 (INV-FADE, DRAG-CNCL from medusa drift jar; SHOP-SPAWN user-flagged) · prior: 2026-06-06: -2 resolved (WEAP-CMBO done in commits, HIST-UI executed — dual-stat combo weapons added in commit b53ed63) · prior: 2026-06-02: -4 resolved (VER-BUMP, CHEAT-SUBM, CHEAT-TIPS, COMP-PARTY), +1 (BOSS-TELE) · prior: 2026-06-01: +1 (ORIG-ROLL) — Origins picker reroll button, user-flagged P1 · prior: 2026-06-01: Styx re-sort — Backlog and Technical Debt integrated into P3/P4, [SCROLL-GAP] promoted to P2, [ORIG-ITEMS] cleaned, [COMP-PLAY] flagged (assumed shipped — not found in backlog) · prior: 2026-06-01: +24 new items (FAIR-PETS, BAIT-LOOT, WHIP-ITEM, MED-ITEMS, FAIR-WORM, FAIR-MINST, BOSS-TOUGH, AREA-STATS, FRIEND-MIN, BASIC-ORIG, CHEAT-TIPS, CHEAT-SUBM, PERS-REVW, ITCH-WRPR, COMP-PARTY, CRED-TEST, TEST-RUNS, VALID-ERR, VER-BUMP, PR-SUMRY, FISH-ABAR, TELE-ENHA, ORIG-PET), LOOT-TEAS moved from Backlog to SPRINT, HIDE-DRM removed — likely resolved by 05/24/26 "Replace Necropolis story beats on NG+" commit (verify via TEST-RUNS), UNDEAD-MGK scope expanded to all non-caster enemy types · prior: 2026-05-24: +2 (DAILY-QUST, HALF-STAT) · prior: 2026-05-21: -3 done/resolved (DEATH-MSG, KILL-LINE, GAME-ENDS), +11 from post-playtest notes (END-DUPE, POOL-GAP, UNDEAD-MGK, SCROLL-GAP, END-ACHIEV, SHOP-BOOST, NECRO-PROP, WEAP-CMBO, HIDE-DRM, BAL-AUDIT, END-SCORE), LOOT-TEAS moved from Backlog to SPRINT · prior: 2026-05-16: +1 (BARK-CTX); prior: +2 (LOOT-TEAS, LOOT-ANIM); prior: +2 (PET-ENCNTR, PET-SLOT), 3 expanded (COMP-PLAY, ENC-PREGEN, PATH-CHOICE); prior: SPRINT block from Perseus 2026-05-15*
 
 ## P0 — Hard Blockers *(drop everything)*
 
@@ -15,6 +13,29 @@
 - Priority: P3 — adds tension to a currently safe encounter type
 - Type: Feature
 - Effort: S | Gain: M
+
+### [SEQ-DELAY] Improvement: Sequential action display — delay 0.5s per log entry
+- Add a 0.5s delay between log entries in multi-step action sequences; wait for effects to complete before re-enabling player input. Turns a wall of text that appears at once into a readable beat-beat-beat rhythm.
+- Wrap the `logAction()` call chain in a `setTimeout` queue; ~500ms between entries; block player input until the chain resolves; scope to multi-step sequences only — single actions stay instant.
+- **The tuning is the hard part, not the queue.** 500ms is a starting guess, not a spec. Too slow and every fight drags; too fast and it reads as a stutter rather than a rhythm. Expect to tune per entry *type* (a hit lands faster than a death line) and to test on a real phone, not just desktop.
+- Entry points are `logAction()` and `logPlayerAction()` in `js/logging.js:32,54`. Both append to `adventureLog` and call `runLogAdd()` — the queue must preserve ordering into `adventureLog`, or the exported run log and the on-screen log diverge.
+- Input blocking already has a mechanism: `removeClickListeners()` / `registerClickListeners(delay)` are used around cutscenes and endings. Reuse them rather than inventing a second lock.
+- **Collides with [ACHIEV-TIME]** (P4): achievements currently use a post-action logging delay hack to land after the action text. A real log queue supersedes that hack — do them together or the two timing systems will fight.
+- **Sequence against [CHAIN-BAR]** (EPICS P2): both change action pacing. Landing this first is fine and probably wise — it makes single actions feel better regardless of whether the chain ships.
+- Priority: P1 — user-directed 2026-08-30. Cheapest available win on game feel; the ranked #2 outcome of the interactive-hook studio session, at S effort.
+- Type: Improvement
+- Effort: S | Gain: M
+
+#### Testing Checklist
+
+- [ ] A multi-hit sequence displays one entry at a time, not all at once
+- [ ] Single-action encounters stay instant — no added delay
+- [ ] Player input is blocked for the duration of the chain and re-enabled exactly once
+- [ ] Tapping repeatedly during a sequence does not queue up phantom actions
+- [ ] `adventureLog` ordering matches on-screen ordering
+- [ ] The exported run log (`downloadRunLog`) is unaffected
+- [ ] Achievement toasts still land after their triggering action, not before
+- [ ] Verified on a real phone, not only desktop
 
 ## P2 — Serious Issues
 
@@ -39,7 +60,6 @@
 - Type: Improvement
 - Effort: S | Gain: L
 
-
 ### [TEST-RUNS] Chore: End-to-end test passes — finish twice, verify NG+ behavior, test on Android
 - Complete at least two full runs to any ending on desktop; verify NG+ behavior (story beat replacement in Necropolis, chronicle persistence, score reset).
 - Complete at least one full run on Android to surface mobile-specific rendering or logic bugs before beta.
@@ -48,27 +68,11 @@
 - Type: Chore
 - Effort: M | Gain: L
 
-### [UNDEAD-MGK] Bug: MGK on non-caster enemies incorrectly triggers near-impossible block condition
-- Zombies and other physical undead carry MGK > 0 in the CSV; `action-config.js` treats any enemy with `eMgk > 0` as a spell-caster and makes block near-impossible ("physically shielding a spell is near-impossible").
-- Audit `encounters.csv` and `story.csv` for all Undead-type rows; remove MGK from non-caster undead (zombies, revenants, etc.); keep MGK only on actual caster subtypes (liches, banshees, wraiths — rows where spells are the intended threat).
-- Extend audit to ALL non-caster enemy types — any Standard warrior, beast, or physical boss carrying MGK > 0 silently makes block near-impossible; the fix is not limited to the Undead type.
-- Priority: P2 — live balance bug on late-game enemies; blocking an undead horde should be physically hard but possible, not mechanically near-impossible.
-- Type: Bug | Severity: Major
-- Effort: S | Gain: L
-
 ### [ENLCK-FUNC] Improvement: Make enemy LCK stat functional
 - Enemy LCK currently does nothing visible — wire it to counter player LCK on crit chance and/or action bar intervals; optionally affect fishing spot chances.
 - Priority: P2 — dead stat on a UI-visible field erodes trust in every other hidden system.
 - Type: Improvement
 - Effort: M | Gain: L
-
-### [SHOP-SPAWN] Bug: Shade shop (Undertaker) not spawning when player has unspent drachma
-- Players report the Undertaker shop failing to appear even when `savedCoins - spentCoins > 0`. Suspected areas include Fading Wildlands and possibly others.
-- Code path: shop injection in `generateNextEncounters` case 0 (`encounter-generator.js`) requires `AchievementManager.isUnlocked('coin_first')` AND unspent drachma AND area not already served. One or more conditions may silently fail.
-- Investigate: confirm `coin_first` unlock timing (should fire on first coin pickup — verify it's not firing too late or missing on some coin types); check `_shopInjectedArea` reset logic; verify all areas use Generator-0 in their sequence.
-- Priority: P2 — shop is a core meta-progression loop; if it silently fails, players lose access to upgrades with no feedback.
-- Type: Bug | Severity: Major
-- Effort: S | Gain: L
 
 ### [INV-FADE] Bug: Extra curtain fade when sleeping to level up on an invader corpse
 - Sleeping on a dead invader and triggering a level-up produces an unexpected extra fade. Cause not identified via static analysis — the "Level Up!" `curtainFadeInAndOut` in `playerCheckLevelUp` is the only expected fade; no second code path found that should fire.
@@ -82,6 +86,63 @@
 - Priority: P2 — public-facing text sets expectations before a player ever loads the game; beta launch is the right time to fix tone mismatches.
 - Type: Chore
 - Effort: S | Gain: M
+
+### [EMOJI-HURT] Improvement: Enemy emoji shows damage — wobble as HP drops
+- The enemy emoji currently looks identical at full health and at one hit from death. In a game with no rendered world that emoji *is* the enemy, so it should visibly deteriorate. Player should be able to see they are winning without reading the HP number.
+- **Preferred treatment: a side-to-side wobble that intensifies as HP falls.** Small and slow near full health, pronounced and faster near death.
+- **Red overlay is the riskier half and probably should not ship.** Emoji render as multicolour font glyphs, so tinting one red means a CSS `filter` (`hue-rotate`/`sepia`/`saturate`) whose result varies by platform emoji font — an Android and an iPhone would not agree on what "wounded" looks like. `#id_enemy_overlay` already exists but is used for persistent status icons (💤 sleeping, ☠️ dead) and reusing it would collide. Recommend wobble only, and revisit tint separately if wobble alone reads as too subtle.
+- **The real integration problem — this emoji is already crowded.** It currently carries:
+  - an infinite idle `animate__pulse` at 2s (`startEnemyEmojiPulse`, `ui-effects.js:523`)
+  - hit-react `animate__shakeX` (`enemy-skills.js:47`)
+  - `animate__headShake` (no stamina), `animate__bounce`, `emoji-purr`, `animate__flipInY` (death)
+  - a random horizontal flip for variety (`enemyEmojiScaleX`, `encounter-loader.js:19`)
+  - a separate overlay element for persistent status icons
+- A persistent wobble therefore cannot simply be added: `_animateUIElementGen` is a generation counter that cancels prior animations, so every hit-react would clobber the wobble. It must be re-applied after each transient animation, exactly as `startEnemyEmojiPulse()` is today — or better, the idle pulse and the wobble should become **one** HP-driven idle state rather than two competing infinite animations.
+- Suggested approach: replace `startEnemyEmojiPulse()` with an HP-aware idle animator that picks a wobble intensity tier from `enemyHp / enemyHpMax`, and re-arms after transient effects. Keep it to 3-4 tiers, not a continuous curve — the difference must be legible at a glance.
+- Must be suppressed for non-creature encounters (Props, Items, Containers, Shops) and while `corpseState` is set — a dead or neutralized enemy already has its own persistent effect.
+- Priority: P2 — real clarity and feel gain at S effort, but it touches a shared animation surface used by six other effects, so it needs care rather than speed.
+- Type: Improvement
+- Effort: S | Gain: M
+- Needs: a call on wobble-only vs wobble-plus-tint after seeing the wobble in motion. Ship wobble first, judge, then decide on tint.
+
+#### Testing Checklist
+
+- [ ] Wobble intensity visibly increases across at least three HP tiers
+- [ ] Hit-react animations still play and the wobble resumes afterwards, every time
+- [ ] Idle pulse and wobble do not run as two competing infinite animations
+- [ ] No wobble on Props, Items, Containers or Shops
+- [ ] No wobble while `corpseState` is `"killed"` or `"neutralized"`
+- [ ] Random `enemyEmojiScaleX` flip still applies and does not fight the wobble
+- [ ] Death animation (`animate__flipInY`) plays cleanly from any wobble tier
+- [ ] Verified on a real phone — subtle motion reads differently at 393px
+
+### [ROSA-EARLY] Question: Rosabel is never named in the opening encounters
+- The tutorial dreams gesture at her without naming her. `story.csv:9` (💐 Distant Vision) reads *"Someone is wating for you on the other side. Choices on the way affect what you find."* That is the only pre-Wildlands reference, and it names nothing — not Rosabel, not the botched resurrection, not what the player is walking toward.
+- DESIGN.md states she is the reason for everything: the corruption, the reincarnation loop, the whole game. A player who quits in the first ten encounters never learns any of that.
+- **Raised independently by two personas in the 2026-08-30 studio session**, which is the overlap signal. The Hardcore Fan's standing position escalated to Revisits 2 on the back of it: the identity gap they flagged for the README in June now looks like it applies inside the game too.
+- Relevant funnel context: 16 of 37 users never pressed play at all, and half of runs that reach a terminal state end at level 1 — so whatever the opening says has to land fast or not at all.
+- Also note the typo in that row: "wating" -> "waiting".
+- **Not a task to just go add exposition.** The counter-argument is real: the obliqueness may be deliberate, and DESIGN.md is equally firm that this game does not explain itself ("Design for desire, not for instruction"). The question is whether *naming her once* is exposition or is the hook.
+- Priority: P2 — cheap to change, disproportionate effect on whether the opening communicates what this game is, but it needs a deliberate authorial call rather than a patch.
+- Type: Question
+- Effort: XS | Gain: L
+- Needs: a decision from the user on whether Rosabel should be named before the player leaves Depths of Slumber. Then a Skepsis or Perseus pass on the actual wording.
+
+### [CRIT-LCK] Improvement: Action bar crit zone luck scaling redesign
+- Crit success and crit fail zone widths should scale smoothly with luck across the range -5 to +10, changing ~1pp per ±2 luck steps, with a non-zero floor on both zones at all times.
+- Current formulas (main path, action-config.js lines 606–607) cap out too early: crit success hits max at LCK 6, crit fail hits floor at LCK 8. Negative luck currently has no effect (pLck is clamped to 0 at line 8).
+- Crit success zone should always be a sliver inside the green success zone — cap it as a fraction of `zoneW`, not an absolute pp count, so it never dominates the bar at high luck.
+- **Also fix these specific hardcoded cases** (confirmed design intent per 2026-05-20 review):
+  - Lines 108/114 — Attack/Grab Trap-Obstacle: remove hardcoded crits, run through normal luck-scaled calc
+  - Lines 119–120 — Exhausted grab (no STA): keep ultra-hard zone, but ADD a crit fail zone (none currently)
+  - Line 129 — Resurrection: keep static narrow crit pass (intentional), but REMOVE crit fail (the critFailW: 5 there has no design reason)
+  - Line 197 — Heavy grab: ADD crit fail zone (grabbing a Heavy with STA remaining should be dangerous, not just hard)
+  - Lines 362–363 — Trap wrong-action: REMOVE crit pass entirely; keep crit fail (punishment, no reward)
+  - Lines 395–397 — Recall/speak Memory: de-hardcode; scale by luck like other speak variants
+- Priority: ~P2 — re-scored from P3 2026-08-30. New context: at LCK 0 the crit zone is 2% of the bar, so a player's first crit lands around encounter 33 while the median run ends at 34. Crit is effectively invisible to new players, which makes this a prerequisite for [CRIT-COMBO] (EPICS) and an early-game hook in its own right. Standing position held by the Balance Designer.
+- Type: Improvement
+- Effort: M | Gain: M
+- Details: Source: Balance Designer + Game Design Lead + Competitive Player review 2026-05-20; see .perseus/2026-05-20-2120-luck-crit-zones.md. **Main-path formulas finalized 2026-05-20** (implemented): `critSuccessW = 2 + pLck * 0.625` (max at luck 8); `critFailW = 5 - rawLck * (rawLck < 0 ? 1.25 : 0.5)` (negative luck expands danger zone, cap 10 at luck −4). Hardcoded special-case fixes remain as a separate future pass. **Negative luck audit (future pass):** Every system where positive luck has a beneficial effect should have negative luck produce the opposite. Known candidates: `RarityManager.rollTier` (luck shifts rarity up — negative should shift toward Cursed/Common); `getWeightedLootIndex` (fishing loot quality); zone position blend in `action-config.js` (`luckBlend = pLck * 0.12` — currently clamped, negative luck should push zone toward a harder right-edge placement); container search width (`40 + pLck * 9` — negative luck should narrow the search zone). Pattern: find every `Math.max(0, pLck)` or `pLck * positiveCoeff` and decide whether unclamping is safe in that context.
 
 ## P3 — Should-Fix
 
@@ -182,7 +243,6 @@
 - Type: Feature
 - Effort: S | Gain: M
 
-
 ### [SHOP-BOOST] Content: Expand shop 1-coin boost item pool
 - Add more Common boost items with +x/-x stat tradeoffs to the shop's 1-coin pool — e.g., +1 ATK / -1 LCK, +1 STA / -1 HP.
 - Currently the cheap shop tier is thin; players cycling the shop repeatedly see the same options.
@@ -212,29 +272,6 @@
 - Ensure crit and success zones on the action bar are distinguishable without color — brightness difference or pattern.
 - Toggleable in menu
 - Priority: P3 — accessibility; not gating beta
-- Type: Improvement
-- Effort: S | Gain: M
-
-### [CRIT-LCK] Improvement: Action bar crit zone luck scaling redesign
-- Crit success and crit fail zone widths should scale smoothly with luck across the range -5 to +10, changing ~1pp per ±2 luck steps, with a non-zero floor on both zones at all times.
-- Current formulas (main path, action-config.js lines 606–607) cap out too early: crit success hits max at LCK 6, crit fail hits floor at LCK 8. Negative luck currently has no effect (pLck is clamped to 0 at line 8).
-- Crit success zone should always be a sliver inside the green success zone — cap it as a fraction of `zoneW`, not an absolute pp count, so it never dominates the bar at high luck.
-- **Also fix these specific hardcoded cases** (confirmed design intent per 2026-05-20 review):
-  - Lines 108/114 — Attack/Grab Trap-Obstacle: remove hardcoded crits, run through normal luck-scaled calc
-  - Lines 119–120 — Exhausted grab (no STA): keep ultra-hard zone, but ADD a crit fail zone (none currently)
-  - Line 129 — Resurrection: keep static narrow crit pass (intentional), but REMOVE crit fail (the critFailW: 5 there has no design reason)
-  - Line 197 — Heavy grab: ADD crit fail zone (grabbing a Heavy with STA remaining should be dangerous, not just hard)
-  - Lines 362–363 — Trap wrong-action: REMOVE crit pass entirely; keep crit fail (punishment, no reward)
-  - Lines 395–397 — Recall/speak Memory: de-hardcode; scale by luck like other speak variants
-- Priority: P3 — not broken enough to block beta; crit zones currently feel slightly too generous at LCK 4+ but the system works
-- Type: Improvement
-- Effort: M | Gain: M
-- Details: Source: Balance Designer + Game Design Lead + Competitive Player review 2026-05-20; see .perseus/2026-05-20-2120-luck-crit-zones.md. **Main-path formulas finalized 2026-05-20** (implemented): `critSuccessW = 2 + pLck * 0.625` (max at luck 8); `critFailW = 5 - rawLck * (rawLck < 0 ? 1.25 : 0.5)` (negative luck expands danger zone, cap 10 at luck −4). Hardcoded special-case fixes remain as a separate future pass. **Negative luck audit (future pass):** Every system where positive luck has a beneficial effect should have negative luck produce the opposite. Known candidates: `RarityManager.rollTier` (luck shifts rarity up — negative should shift toward Cursed/Common); `getWeightedLootIndex` (fishing loot quality); zone position blend in `action-config.js` (`luckBlend = pLck * 0.12` — currently clamped, negative luck should push zone toward a harder right-edge placement); container search width (`40 + pLck * 9` — negative luck should narrow the search zone). Pattern: find every `Math.max(0, pLck)` or `pLck * positiveCoeff` and decide whether unclamping is safe in that context.
-
-### [SEQ-DELAY] Improvement: Sequential action display — delay 0.5s per log entry
-- Add a 0.5s delay between log entries in multi-step action sequences; wait for effects to complete before re-enabling player input.
-- Wrap the `logAction()` call chain in a `setTimeout` queue; 500ms between entries; block player input until the chain resolves; scope to multi-step sequences only — single actions stay instant.
-- Priority: P3 — noticeably improves readability of multi-hit and multi-step sequences; S effort for real feel gain.
 - Type: Improvement
 - Effort: S | Gain: M
 
@@ -269,6 +306,55 @@
 - Priority: P3 — content completeness; death descriptions are a visible gap
 - Type: Chore
 - Effort: S | Gain: M
+
+### [REVIVE-HYPO] Question: Pre-registered confirm/kill criteria for the revive-payoff hypothesis
+- **Hypothesis (UNCONFIRMED, n=1):** the game's payoff moment is a revive rescuing a long run. Provenance is a single beta player, a friend, who messaged after pulling off a revive deep into a run. Not a finding. Do not build on it as one.
+- **Testable form:** among players who reach a death, those who revive are substantially more likely to return than comparable players who die at similar depth and do not.
+- **The confounder that will fake a confirmation:** the revive is gated behind reaching a Death encounter *and* passing a skill check (`js/action-resolver.js:66-72`). Revivers are by construction players who already engaged deeply - in the current export all 4 revivers sit inside the top 5 users by event volume. A raw correlation between "revived" and "kept playing" is near-guaranteed and means nothing. **Any test that does not stratify by death depth is not a test.**
+- **CONFIRM - all four must hold:**
+  1. Sample: at least 40 users who reach at least one death, on a single build.
+  2. Effect: stratify by first-death depth (encounterCount buckets 15-40 / 41-100 / 100+). Within-stratum, revivers show retention at least 20 percentage points higher than non-revivers, in at least two strata.
+  3. Retention defined as: any gameplay event at least 1 hour after that death, in a new session.
+  4. Robustness: the effect survives excluding the top 5 users by total event count.
+- **KILL - any one is sufficient:**
+  1. Within-stratum retention difference is under 5 pp, or negative.
+  2. Revive rate among players who reach a death is above 80% or below 10% - too high and revive cannot be what separates leavers from stayers; too low and it is not the payoff moment, it is a mechanic nobody sees.
+  3. The dominant stall proves to be upstream of any death at all. Current data already leans this way: only 8 of 37 users ever reached a death, and 16 of 37 never pressed play. If confirmed, the hypothesis is answering a question about a small minority of the audience and is dead as a *priority* whether or not it is true.
+- **Anything else is INCONCLUSIVE** and should be reported as such rather than read as a weak yes.
+- **Cost warning:** seven weeks of current traffic produced 8 users who reached a death. At this rate a properly powered test is roughly a year out. Instrumentation is worth doing regardless, but "measure first, then decide" only works if traffic changes.
+- Instrumentation shipped 2026-08-30 (`run_exit`, `menu_leave`, the `^k=v` context pack carrying `ri`/`rv`/`hp`/`in`, and the active-playtime fix). The blocker is now data volume, not tooling: only 8 users had ever reached a death as of the 2026-08-24 export, against a required n=40.
+- Priority: P3 - the criteria are written down and settled; the item stays open only as the record to check the eventual data against, and cannot be actioned until the instrumentation ships and traffic accumulates.
+- Type: Question
+- Effort: XS | Gain: M
+- Needs: nothing to decide - this is the pre-registration. Do not renegotiate the thresholds after seeing the data.
+
+### [NEAR-MISS] Question: Is an early scripted or weighted near-miss an acceptable intervention?
+- Open design question, deliberately unresolved. Should the game script or weight an early near-miss moment - a fight the player barely survives, or a revive made likely - to make its case for itself before players stall?
+- **For:** half of all runs that reach a terminal state end at level 1 (34 of 68 `run_end` rows), and the revive is the mechanic that most plausibly teaches "death is not the end" - the game's central thesis. A player who never sees it never learns the rule they are being asked to play by.
+- **Against:** the near-miss is precisely the moment that has to feel earned for the revive to land at all. Manufacture it and you may hollow out the exact experience you are trying to deliver. And if run two is honest where run one was rigged, run two reads as a punishment for continuing.
+- Not resolvable from data currently held. The `hp` (hpPct) field now shipping in the telemetry context pack is what would eventually show whether organic near-misses already happen at the rate the design needs.
+- Priority: P3 - a real fork that shapes onboarding design, but it should not be answered before the instrumentation lands.
+- Type: Question
+- Effort: XS | Gain: L
+- Needs: an explicit design ruling from the user. Do not resolve this from the model side. Consider a Hades Gate or Perseus session once [TELE-PACK] has produced hpPct distributions.
+
+### [PNUM-RESET] Bug: `playerNumber` is never reset between runs
+- `playerNumber` is documented as "Increments on revival" (`game-state.js:14`) and is incremented in `playerReincarnate()` (`player-skills.js:706`), but **`renewPlayer()` never resets it** — confirmed 2026-08-30. It is also persisted and restored (`save-manager.js:46,146`), so it accumulates across every run for the life of the save rather than tracking revives of the current character.
+- Found while implementing the telemetry context pack. Worked around rather than fixed: `playerRevivesThisRun` was added as a correctly run-scoped counter for the `rv` telemetry field, so nothing currently depends on `playerNumber` being right.
+- Left unfixed deliberately — it is persisted, and nothing traced so far reads it for gameplay, but a silent change to a saved field could affect old saves in ways not yet checked. Establish what (if anything) consumes it before changing it.
+- Priority: P3 — no known player-visible symptom, but the variable does not do what its name and comment say, which is exactly the kind of thing that misleads a future change.
+- Type: Bug | Severity: Minor
+- Effort: XS | Gain: S
+
+### [BAR-STATS] Question: Are level-1 deaths unhooked players or players failing the action bar?
+- 34 of 68 completed runs end at level 1. Two explanations need opposite fixes: players who never got hooked (needs a hook) versus players who kept whiffing the skill check (needs easier zones). **Nothing currently distinguishes them**, so any change to the action bar is being made blind.
+- Raised by the Casual Gamer in the 2026-08-30 interactive-hook session, and it sits underneath [CHAIN-BAR], [SEQ-DELAY] and [CRIT-LCK] — all three touch the bar.
+- What would answer it: an aggregate action-bar outcome rate (attempts, successes, crit successes, crit fails) attached to the existing `run_end` / `run_exit` events. That is four counters in the context pack, not a per-attempt event stream.
+- **This is deliberately NOT a request to enable `TELEMETRY_DETAILS_ENABLED`.** That flag was reviewed on 2026-08-30 and the user decided to keep the `loot` / `enemy` firehose off — a decision this item does not reopen. Aggregate counters are a different shape: four integers riding rows that already send, versus roughly 6.6x row volume.
+- Priority: P3 — real blocker on informed action-bar tuning, but only worth building if the bar work actually gets scheduled.
+- Type: Question
+- Effort: S | Gain: M
+- Needs: confirmation that aggregate bar counters are acceptable given the standing decision to keep detail telemetry off.
 
 ## P4 — Nice to Have
 
@@ -313,7 +399,6 @@
 - Priority: P4 — content depth
 - Type: Feature
 - Effort: S | Gain: S
-
 
 ### [ORIG-PET] Content: Origin that begins with a pet companion
 - Add an origin whose starting condition places a specific pet emoji in `playerPartyString` at run start — e.g., a Shepherd origin that starts with 🐕.
@@ -452,4 +537,4 @@
 
 ---
 
-*Styx Flow complete — ~104 items processed*
+*Styx Flow complete — ~106 items processed*

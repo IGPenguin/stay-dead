@@ -32,7 +32,7 @@ function redraw(){
   var _partyLootParts = [];
   if (_party.length > 0) _partyLootParts.push(_party);
   if (_loot.length  > 0) _partyLootParts.push(_loot);
-  document.getElementById('id_player_party_loot').innerHTML = _partyLootParts.length > 0 ? _partyLootParts.join('&nbsp;|&nbsp;') : "x x x";
+  document.getElementById('id_player_party_loot').innerHTML = _partyLootParts.length > 0 ? _partyLootParts.join('|') : "x x x";
 
   //Versus UI
   versusTextUIElement = document.getElementById('id_versus');

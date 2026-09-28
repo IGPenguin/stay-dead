@@ -48,7 +48,7 @@ def validate_achievement_origins(warnings, errors):
         content = f.read()
     
     # Extract ACHIEVEMENTS array: id and unlock text
-    ach_matches = re.findall(r'\{\s*id:\s*[\'"](.*?)[\'"],.*?unlock:\s*[\'"](.*?)[\'"]\s*\}', content, re.DOTALL)
+    ach_matches = re.findall(r'\{\s*id:\s*[\'"]([^\'"]*)[\'"],[^{}]*?unlock:\s*[\'"](.*?)[\'"]\s*\}', content, re.DOTALL)
     ach_map = {id: unlock for id, unlock in ach_matches}
 
     origins = []

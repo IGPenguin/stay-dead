@@ -27,8 +27,48 @@ var TelemetryManager = (function () {
 
   var _pendingLootSource = null;
 
+  // ── Session flags ──────────────────────────────────────────────────────────
+  var RUNIDX_KEY   = 'sd_run_index';
+  var _pageLoadAt  = Date.now();
+  var _interacted  = false; // set on the first real pointer/key input this page load
+  var _runStarted  = false; // a run_start or run_continue has fired this page load
+  var _runEnded    = false; // a run_end has fired for the current run
+  var _lastExitEc  = -1;    // encounterCount at the last run_exit, to avoid re-reporting the same depth
+  var _lastMenuDwell = -1;  // menu dwell (s) at the last menu_leave
+
   function _getNickname() {
     try { return localStorage.getItem(NICKNAME_KEY) || ''; } catch (e) { return ''; }
+  }
+
+  function _getRunIndex() {
+    try { return parseInt(localStorage.getItem(RUNIDX_KEY) || '0', 10) || 0; } catch (e) { return 0; }
+  }
+
+  // Called from _doStartGame() immediately before the run_start event.
+  function bumpRunIndex() {
+    var n = _getRunIndex() + 1;
+    try { localStorage.setItem(RUNIDX_KEY, String(n)); } catch (e) {}
+    return n;
+  }
+
+  // ── Context pack ───────────────────────────────────────────────────────────
+  // Extra run-shape dimensions, appended to the free-text `payload` column as a
+  // "^k=v;k=v" suffix. The Google Form has no field for these and adding one would
+  // require editing the form, so they ride an existing column instead.
+  // Parse downstream by splitting on the LAST "^" — enemy names in a run_end
+  // payload could in principle contain one, so splitting on the first is unsafe.
+  function _pack() {
+    var hpPct = 0;
+    if (typeof playerHpMax !== 'undefined' && playerHpMax > 0) {
+      hpPct = Math.max(0, Math.min(100, Math.round((playerHp / playerHpMax) * 100)));
+    }
+    return [
+      'ri=' + _getRunIndex(),
+      'ar=' + String((typeof areaName !== 'undefined' && areaName) ? areaName : '').replace(/[;^]/g, ''),
+      'rv=' + ((typeof playerRevivesThisRun !== 'undefined') ? playerRevivesThisRun : 0),
+      'hp=' + hpPct,
+      'in=' + (_interacted ? 1 : 0)
+    ].join(';');
   }
 
   function _getBrowserInfo() {
@@ -63,7 +103,7 @@ var TelemetryManager = (function () {
     var stats      = [playerHpMax || 0, playerAtk || 0, playerStaMax || 0,
                       playerLck   || 0, playerInt  || 0, playerMgkMax || 0, playerDef || 0].join(';');
     var companions = countEmoji(playerPartyString);
-    var playtime   = Math.floor((Date.now() - (runStartTimestamp || Date.now())) / 1000);
+    var playtime   = getActivePlaytime();
     var score      = (typeof ScoreManager !== 'undefined') ? ScoreManager.calculate() : 0;
     var difficulty = (typeof GAME_CONFIG !== 'undefined')
                      ? (GAME_CONFIG.displayName || GAME_CONFIG.label) : '?';
@@ -96,6 +136,10 @@ var TelemetryManager = (function () {
     var criticalEvents = ['run_start', 'game_visit', 'cheat_used'];
     if (cheatedThisRun && criticalEvents.indexOf(event) === -1) return;
 
+    // Track run lifecycle so the page-hide handler knows whether a run is live.
+    if (event === 'run_start' || event === 'run_continue') { _runStarted = true; _runEnded = false; }
+    else if (event === 'run_end') { _runEnded = true; }
+
     var ctx    = _buildContext();
     var params = new URLSearchParams();
     
@@ -106,7 +150,7 @@ var TelemetryManager = (function () {
     params.append(ENTRY.userId,          uid);
     params.append(ENTRY.sessionId,       sid);
     params.append(ENTRY.event,          event);
-    params.append(ENTRY.payload,        String(payload || ''));
+    params.append(ENTRY.payload,        String(payload || '') + '^' + _pack());
     params.append(ENTRY.score,          ctx.score);
     params.append(ENTRY.nickname,       _getNickname() || '');
     params.append(ENTRY.charName,       ctx.charName);
@@ -144,5 +188,57 @@ var TelemetryManager = (function () {
     return s;
   }
 
-  return { send: send, setLootSource: setLootSource, popLootSource: popLootSource };
+  // ── Page-hide reporting ────────────────────────────────────────────────────
+  // Without this, a player who closes the tab mid-run is invisible: encounterCount
+  // only ships on achievement / run_end / run_continue rows, so their depth is
+  // unknowable. sendBeacon (used by send()) survives unload.
+  //
+  // MENU_REARM_S caps repeat menu_leave events for someone toggling tabs while
+  // parked on the menu — at most one event per 30s of accumulated menu time.
+  var MENU_REARM_S = 30;
+
+  function _onHide() {
+    // Bank playtime first so the event carries an accurate active-play figure.
+    bankPlaytime();
+
+    if (_runStarted && !_runEnded) {
+      var ec = (typeof encounterCount !== 'undefined') ? encounterCount : 0;
+      if (ec === _lastExitEc) return; // already reported this depth; nothing new happened
+      _lastExitEc = ec;
+      send('run_exit', '');
+      return;
+    }
+
+    if (!_runStarted) {
+      var dwell = Math.floor((Date.now() - _pageLoadAt) / 1000);
+      if (_lastMenuDwell >= 0 && (dwell - _lastMenuDwell) < MENU_REARM_S) return;
+      _lastMenuDwell = dwell;
+      var screen = '';
+      try { screen = (typeof Menu !== 'undefined' && Menu.getCurrentScreen) ? Menu.getCurrentScreen() : ''; } catch (e) {}
+      send('menu_leave', dwell + '|' + screen);
+    }
+  }
+
+  function _onShow() { resumePlaytime(); }
+
+  function _initListeners() {
+    var _markInteracted = function () { _interacted = true; };
+    document.addEventListener('pointerdown', _markInteracted, { once: true, capture: true });
+    document.addEventListener('keydown',     _markInteracted, { once: true, capture: true });
+
+    document.addEventListener('visibilitychange', function () {
+      if (document.visibilityState === 'hidden') _onHide(); else _onShow();
+    });
+    // pagehide covers the cases visibilitychange misses (bfcache, some iOS paths).
+    // _onHide is idempotent — the _lastExitEc / _lastMenuDwell guards absorb the double call.
+    window.addEventListener('pagehide', _onHide);
+    // bfcache restore does not always emit visibilitychange; without this the playtime
+    // clock would stay paused for the rest of the run (undercount, never overcount).
+    window.addEventListener('pageshow', _onShow);
+  }
+
+  _initListeners();
+
+  return { send: send, setLootSource: setLootSource, popLootSource: popLootSource,
+           bumpRunIndex: bumpRunIndex };
 })();

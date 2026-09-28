@@ -58,6 +58,9 @@ function renewPlayer(){ //Default values
   availableCoins=savedCoins;
   encounterCount = 0;
   runStartTimestamp = Date.now();
+  playtimeBankedMs     = 0;
+  playtimeSegmentStart = Date.now();
+  playerRevivesThisRun = 0;
   playerOriginName = '';
   cheatedThisRun = false;
   playerCritSuccesses     = 0;
@@ -233,13 +236,13 @@ function playerRest(silent=false, countThreshold=false){
       }
     }
 
-    if (!silent && procAbilityChance("⛺️",33)){
+    if (!silent && procAbilityChance("⛺️",50)){
       logAction("💤 ▸ <b>⛺️️ Camping Tent</b> provided bonus +1 🟢")
       playerSta++;
       displayPlayerRestedEffect();
     }
 
-    if (!silent && procAbilityChance("🔮",33)){
+    if (!silent && procAbilityChance("🔮",50)){
       logAction("🔮 ▸ <b>👁️ Vivid Dream</b> provided bonus +1 🔵")
       playerMgk++;
       displayPlayerRestedEffect();
@@ -319,7 +322,7 @@ function playerUseStamina(stamina, message = ""){
     return false;
   } else {
     playerSta -= stamina;
-    if (procAbilityChance("🪶",33)){
+    if (procAbilityChance("🪶",50)){
       logAction("🪶  ▸ <b>♻️ Quick Reflexes</b> kicked in +"+stamina+" 🟢");
       playerSta+=stamina;
     }
@@ -605,7 +608,7 @@ function playerHit(incomingDamage,applyLuck=true,typeMagic=false) {
     return;
   }
 
-  if (procAbilityChance("🛡️",33) && !typeMagic) {
+  if (procAbilityChance("🛡️",50) && !typeMagic) {
     logAction("🛡️ ▸ 💢 Attack deflected by <b>🛡 Random Block</b>.");
     displayPlayerCannotEffect();
     displayPlayerEffect("🛡️");
@@ -701,6 +704,7 @@ function playerReincarnate(){
   SaveManager.removeLastDeathSession(adventureStartTime);
   //SaveManager.clearGameState(); // treat revive as a new run — wipe the death-screen snapshot
   playerNumber++; //Tracks revives of the character
+  playerRevivesThisRun++; //Run-scoped copy for telemetry (playerNumber is not reset per run)
   AchievementManager.check('reincarnate');
   displayPlayerEffect("✨");
   

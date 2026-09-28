@@ -32,6 +32,8 @@ function encounterRenew(){
 }
 
 //Load or generate encounter
+var _friendMetAtEncounter = -1;
+
 function loadEncounter(index, fileLines = linesStory){
   encounterIndex = index;
   var row = fileLines[index];
@@ -217,7 +219,9 @@ function loadEncounter(index, fileLines = linesStory){
       }
       break;
     case "Friend":
-      if (!enemyName.includes("Bride")) logAction("👁️ ▸ "+enemyEmoji+" Met creature: <b>"+enemyName+"</b>")
+      // Fished friends reload every turn while reeled in; log the meeting once per encounter
+      if (!enemyName.includes("Bride") && _friendMetAtEncounter !== encounterCount) logAction("👁️ ▸ "+enemyEmoji+" Met creature: <b>"+enemyName+"</b>")
+      _friendMetAtEncounter = encounterCount;
       break;
     case "Shop": //I just did HAAAACKKKK, and it feelt sooo WRONG (really, needs fixing... later)
       if (!adventureLog.includes("Something appeared:")) logAction("🌀 ▸ "+enemyEmoji+"<text style=color:"+colorLightShadeBlue+";> <b>The "+enemyName+"</b> appeared. </text>")

@@ -427,7 +427,7 @@ var _FETCH_BARKS = {
     { icon: '🎁', text: 'Deposits a live catch at your feet.' },
     { icon: '🎁', text: 'Drops something wriggling nearby.' },
     { icon: '🎁', text: 'Presents a catch with indifference.' },
-    { icon: '🎁', text: 'Leaves something wiggling at your boot.' },
+    { icon: '🎁', text: 'Leaves something wiggling.' },
   ],
   bird: [
     { icon: '🥚', text: 'Lays something small and warm.' },
@@ -465,10 +465,10 @@ var _FETCH_BARKS = {
     { icon: '🎁', text: 'Leaves a small hoard at your feet.' },
   ],
   large: [
-    { icon: '💚', text: 'Stands still to ease your baggage.' },
-    { icon: '💚', text: 'Offers their side to rest against.' },
+    { icon: '💚', text: 'Carries your load a while.' },
+    { icon: '💚', text: 'Lets you lean on them.' },
     { icon: '💚', text: 'Breathes slow. So do you.' },
-    { icon: '💚', text: 'Steadies the moment with presence.' },
+    { icon: '💚', text: 'Steadies you with presence.' },
     { icon: '💚', text: 'Lowers their weight to you.' },
   ],
 };

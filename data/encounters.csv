@@ -163,12 +163,11 @@ Fading Wildlands;🥻;Philosopher Toga;Item-Chest;0;0;0;0;2;0;0;<b>Artifact</b>;
 Fading Wildlands;🥋;Budo Kimono;Item-Chest;1;0;1;0;0;0;0;Fancy Gown;Made for martial arts practice.<br>Provides <b>+1 ❤️ Health</b> and <b>+1 🟢 Energy</b>.;Neat and comfortable;knockout_first
 Fading Wildlands;🔪;Bloody Knife;Item-Weapon;0;1;0;-2;0;0;0;Evidence of Sin;The blade still looks sharp.<br>Provides <b>+1 ⚔️ Damage</b> for <b>-2 🍀 Luck</b>.;The blood wasn't yours.;kill_first
 Fading Wildlands;🌀;Shedding Stone;Item-Trinket;0;0;0;0;1;1;0;<b>Artifact</b>;Worn smooth by hands that kept changing.<br>Provides <b>+1 🔵 Mana</b> and <b>+1 🧠 Intellect</b>.;You feel slightly less fixed.;meditate_first
-Fading Wildlands;💸;Empty Pouch;Item-Trinket;0;1;0;1;0;0;0;<b>Artifact</b>;Nothing left to lose. That's its own kind of freedom.<br>Provides <b>+1 ⚔️ Attack</b> and <b>+1 🍀 Luck</b>.;Nothing left. That's enough.;spent_10
 Fading Wildlands;〽️;Echo Blade;Item-Weapon;0;2;0;0;0;0;0;<b>Artifact</b>;Taken from a hand that already failed.<br>Provides <b>+2 ⚔️ Attack</b>.;It still remembers how to cut.;rival_kill
 Fading Wildlands;🏷️;Merchant's Tag;Item-Trinket;0;0;0;0;2;0;0;Worn Label;Marked with a price that hasn't been settled.<br>Provides <b>+2 🧠 Intellect</b>.;Someone paid for this already.;buy_artifact_first
 
 Fading Wildlands;🏵️;Symbol of Life;Item-Trinket;0;0;0;0;0;0;0;<b>Artifact</b>;Provides a new skill <b>💀 Cheat Death</b>.<br>Get a <b>second chance to live</b> upon dying.;Gained skill <b>💀 Cheat Death</b>.;none
-Fading Wildlands;⛺️;Camping Tent;Item;0;0;0;0;0;0;0;<b>Artifact</b>;Portable equipment, provides extra comfort. <br>33% chance for <b>+1 🟢 Energy</b> on <b>💤 Sleep</b>.;Gained ability <b>⛺️ Portable Camp</b>.;none
+Fading Wildlands;⛺️;Camping Tent;Item;0;0;0;0;0;0;0;<b>Artifact</b>;Portable equipment, provides extra comfort. <br>50% chance for <b>+1 🟢 Energy</b> on <b>💤 Sleep</b>.;Gained ability <b>⛺️ Portable Camp</b>.;none
 Fading Wildlands;🥀;Weeping Rose;Item-Trinket;-1;0;0;0;0;0;0;<b>Artifact</b>;Sacrifice -1 ❤️ for <b>🥀 Thorns Payback</b>.<br><b>Deal -1 💔 when hit</b> by a physical attack.;Obtained <b>🥀 Thorns Payback</b>.;none
 Fading Wildlands;🎨;Painter's Palette;Item-Trinket;0;0;0;0;2;0;0;<b>Artifact</b>;Must've been left behind by a true artist.<br>Provides <b>+2 🧠 Creativity</b>.;Felt a surge of creativity;none
 Fading Wildlands;🖌️;Painter's Brush;Item-Weapon;0;0;0;0;0;1;0;<b>Artifact</b>;Enchanted tool radiating with strange power.<br>Provides <b>+1 🔵 Mana</b>, leaves a glowing trail.;Got a hold of a powerful tool;none
@@ -432,7 +431,7 @@ Forsaken Village;🐖;Starving Porker;Standard;2;1;2;0;2;0;0;Wild Beast;Looking 
 Forsaken Village;🐀;Starving Rat;Standard;2;2;1;0;-1;0;0;Dangerous Critter;Probably carries some nasty diseases.<br>;Contracted a deadly disease.;none
 Forsaken Village;🐑;Blight Sheep;Standard;3;0;2;0;0;0;0;Diseased Livestock;Sheds its wool in crusty clumps.<br>;Suffocated under its weight.;none
 Forsaken Village;🕵️‍♂️;Grave Robber;Standard;2;2;2;0;2;0;0;Profane Human;Smells of soil and rotten decay.<br>;Buried in a shallow grave.;none
-Forsaken Village;🧙‍♀️;Lunatic Hermit;Standard;2;1;1;0;2;1;0;Reclusive Human;Does not care about the decaying world.<br>;Choked with bare hands.;none
+Forsaken Village;🧙‍♀️;Lunatic Hermit;Standard;2;1;1;0;2;0;0;Reclusive Human;Does not care about the decaying world.<br>;Choked with bare hands.;none
 
 Forsaken Village;🪞;Cracked Mimic;Reflective;2;0;2;0;-1;0;0;Haunted Object;The reflection in it is not yours.<br>;Couldn't take your reflection.;none
 
@@ -463,7 +462,7 @@ Forsaken Village;🐐;Crazed Goat;Swift;1;0;3;0;0;0;0;Unstable Livestock;Foam dr
 Forsaken Village;🤖;Corrupted Protector;Heavy;2;1;2;0;2;0;0;Automatron;Sparkles and flashing diodes indicate problems.<br>;Torn into two halves.;none
 Forsaken Village;🐖;Massive Porkchop;Heavy;3;1;1;0;-1;0;0;Wild Beast;Produces a variety of unpleasant noises.<br>;Devoured by a porkchop.;none
 
-Forsaken Village;🪲;Dead Beetle;Undead;1;1;1;0;-1;1;0;Risen Insect;Should not be moving. Is moving.<br>;Bugs got into your brain.;none
+Forsaken Village;🪲;Dead Beetle;Undead;1;1;1;0;-1;0;0;Risen Insect;Should not be moving. Is moving.<br>;Bugs got into your brain.;none
 Forsaken Village;🐝;Withered Drone;Undead;1;1;1;0;-1;0;0;Dead Insect;Still flying. Long since dead.<br>;Your buzzing stopped, forever.;none
 Forsaken Village;🐖;Rotten Swine;Undead;3;1;1;0;-1;0;0;Wild Beast;Produces a variety of unpleasant noises.<br>;Zombified by a porkchop.;none
 Forsaken Village;🐕;Cursed Hound;Undead;2;2;1;0;2;0;0;Feral Husk;Won't stop chasing you around.<br>;Bitten through the throat.;none
@@ -509,14 +508,13 @@ Forsaken Village;🐷;Pig Mask;Item-Head;0;0;0;0;0;0;0;<b>Artifact</b>;Grants sp
 Forsaken Village;🌀;Shedding Stone;Item-Trinket;0;0;0;0;1;1;0;<b>Artifact</b>;Worn smooth by hands that kept changing.<br>Provides <b>+1 🔵 Mana</b> and <b>+1 🧠 Intellect</b>.;You feel slightly less fixed.;meditate_first
 Forsaken Village;🫙;Brine Jar;Item-Trinket;0;0;1;0;1;0;0;<b>Artifact</b>;Preserves what most would call poison.<br>Provides <b>+1 🟢 Energy</b> and <b>+1 🧠 Intellect</b>.;Tastes like the end of something.;none
 Forsaken Village;🏷️;Merchant's Tag;Item-Trinket;0;0;0;0;2;0;0;Worn Label;Marked with a price that hasn't been settled.<br>Provides <b>+2 🧠 Intellect</b>.;Someone paid for this already.;buy_artifact_first
-Forsaken Village;💸;Empty Pouch;Item-Trinket;0;1;0;1;0;0;0;<b>Artifact</b>;Nothing left to lose. That's its own kind of freedom.<br>Provides <b>+1 ⚔️ Attack</b> and <b>+1 🍀 Luck</b>.;Nothing left. That's enough.;spent_10
 Forsaken Village;〽️;Echo Blade;Item-Weapon;0;2;0;0;0;0;0;<b>Artifact</b>;Taken from a hand that already failed.<br>Provides <b>+2 ⚔️ Attack</b>.;It still remembers how to cut.;rival_kill
 
 Forsaken Village;🧲;Relic Magnet;Item-Trinket;0;0;0;1;1;0;0;Worn Curiosity;Draws the significant toward whoever survives.<br>Provides <b>+1 🍀 Luck</b> and <b>+1 🧠 Intellect</b>.;Something worth keeping pulled it toward you.;none
 Forsaken Village;🪓;Titansteel Cleaver;Item-Weapon;0;2;0;0;0;0;0;<b>Artifact</b>;Capable of making a bloody mess.<br>Provides <b>+2 ⚔️ Damage</b>.;Obtained a deadly weapon.;none
 Forsaken Village;🥊;Enchanted Glove;Item-Weapon;1;1;0;0;0;0;0;<b>Artifact</b>;Improves hand-to-hand combat technique.<br>Provides <b>+1 ⚔️ Damage</b> and <b>+1 ❤️ Health</b>.;Feeling more confident.;none
 Forsaken Village;🛹;Sturdy Skateboard;Item-Weapon;0;1;1;0;0;0;0;<b>Artifact</b>;Doubles for transport and dealing damage.<br>Provides <b>+1 ⚔️ Damage</b> and <b>+1 🟢 Energy</b>.;Cool, fast and dangerous.;none
-Forsaken Village;🛡️;Unstable Shield;Item-Trinket;0;0;0;0;0;0;0;<b>Artifact</b>;Provides a new skill <b>🛡 Random Block</b>.<br>33% chance to <b>resist physical damage</b>.;Gained skill <b>🛡 Random Block</b>.;none
+Forsaken Village;🛡️;Unstable Shield;Item-Trinket;0;0;0;0;0;0;0;<b>Artifact</b>;Provides a new skill <b>🛡 Random Block</b>.<br>50% chance to <b>resist physical damage</b>.;Gained skill <b>🛡 Random Block</b>.;none
 Forsaken Village;🧼;Ancient Soap;Item-Trinket;0;0;0;0;0;0;0;<b>Artifact</b>;Grants attribute <b>🫧 Bubble Shield</b>.<br>Repels received damage - <b>once per combat</b>.;Gained attribute <b>🫧 Bubble Shield</b>.;none
 Forsaken Village;🎓;Scholar's Hat;Item-Head;0;0;0;0;0;0;0;<b>Artifact</b>;<b>✏️ Experience</b> gains are <b>increased by 25%</b><br><i>Anyone looks way smarter wearing this.</i>;<b>Experience gains faster by 25%!</b>;none
 Forsaken Village;💿;Save Indicator;Item-Trinket;0;0;0;0;0;0;0;<b>Artifact</b>;Provides a new skill <b>💀 Cheat Death</b>.<br>Get a <b>second chance to live</b> upon dying.;Gained skill <b>💀 Cheat Death</b>.;none
@@ -878,7 +876,7 @@ Twisted Fairyland;🦎;Komodo Dragon;Boss-Toxic;3;3;2;0;4;0;0;Venomous Lizard;Ma
 Twisted Fairyland;🪨;Animated Stone;Boss-Tough;3;2;1;0;-1;0;1;Malevolent Spell;This one seems pretty serious.<br>;Crushed into a fine dust.;none
 Twisted Fairyland;🐉;Faerie Dragon;Boss-Reflective;4;3;1;0;3;1;0;Mythical Creature;Pearlescent scales, maw full of teeth.<br>;Got your head chewed off.;none
 Twisted Fairyland;🐺;Prowling Wolf;Boss-Swift;4;3;2;0;3;0;0;Apex Predator;Hunting for prey.<br>;Got ripped apart and eaten.;none
-Twisted Fairyland;🧌;Troll Warmonger;Boss-Heavy;3;3;2;0;4;1;0;Twisted Humanoid;Shakes the earth with every step.<br>;Pounded into dust.;none
+Twisted Fairyland;🧌;Troll Warmonger;Boss-Heavy;3;3;2;0;4;0;0;Twisted Humanoid;Shakes the earth with every step.<br>;Pounded into dust.;none
 Twisted Fairyland;🦖;Ferocious Raptor;Boss-Heavy;4;3;1;0;-1;0;0;Mr. Funny Hands;Looks like a freakin' big problem.<br>;Got chewed with dozens of teeth.;none
 Twisted Fairyland;👽;Ancient Alien;Boss-Demon;3;1;3;0;4;0;0;Cursed Reflection;Copies your every move.<br>;Shattered in a mirror duel.;none
 Twisted Fairyland;🦟;Thirsty Mosquito;Boss-Demon;4;1;4;0;-1;0;0;Vile Bloodsucker;Swarm of wings and needles.<br>;Drained to an empty husk.;none
@@ -930,16 +928,15 @@ Twisted Fairyland;📎;Universal Key;Item;0;0;0;0;0;0;0;<b>Artifact</b>;Provides
 Twisted Fairyland;🐷;Pig Mask;Item-Head;0;0;0;0;0;0;0;<b>Artifact</b>;Grants special skill <b>🐷 Pig Digestion</b>.<br><b>Negative food effects don't affect you.</b>;Gained skill <b>🐷 Pig Digestion</b>.;eat_hazardous
 Twisted Fairyland;🌀;Shedding Stone;Item-Trinket;0;0;0;0;1;1;0;<b>Artifact</b>;Worn smooth by hands that kept changing.<br>Provides <b>+1 🔵 Mana</b> and <b>+1 🧠 Intellect</b>.;You feel slightly less fixed.;meditate_first
 Twisted Fairyland;🧬;Fused Marrow;Item-Trinket;1;0;0;0;0;1;0;Identity Remnants;Extracted from two different bodies.<br>Provides <b>+1 ❤️ Health</b> and <b>+1 🔵 Mana</b>.;The borrowed lives ran out.;transmute_first
-Twisted Fairyland;💸;Empty Pouch;Item-Trinket;0;1;0;1;0;0;0;<b>Artifact</b>;Nothing left to lose. That's its own kind of freedom.<br>Provides <b>+1 ⚔️ Attack</b> and <b>+1 🍀 Luck</b>.;Nothing left. That's enough.;spent_10
 Twisted Fairyland;〽️;Echo Blade;Item-Weapon;0;2;0;0;0;0;0;<b>Artifact</b>;Taken from a hand that already failed.<br>Provides <b>+2 ⚔️ Attack</b>.;It still remembers how to cut.;rival_kill
 
 Twisted Fairyland;🖤;Obsidian Pebble;Item-Trinket;0;0;0;0;0;0;0;<b>Artifact</b>;Supposedly turns one's heart to stone.<br>Provides <b>+1 🔰 Defence</b>.;Who needs love anyway? <b>+1 🔰</b>;none
 Twisted Fairyland;👺;Devil Mask;Item-Head;0;0;0;0;0;0;0;<b>Artifact</b>;Grants special attribute <b>👺 Devil Appearance</b>.<br><b>Demon type enemies will be passive</b>.;Gained attribute <b>👺 Devil's Appearance</b>.;none
 Twisted Fairyland;💫;Starfall Circlet;Item-Head;0;0;0;0;0;0;0;<b>Artifact</b>;Grants special attribute <b>✨ Fortify Magic</b>.<br>Your <b>💫 Cast</b> deals <b>+1 💔 Damage</b>.</b>;Gained special skill <b>✨ Fortify Magic</b>.;none
-Twisted Fairyland;💠;Crystal Shield;Item-Trinket;0;0;0;0;0;0;0;<b>Artifact</b>;Provides a new skill <b>💠 Reflect Magic</b>.<br>33% chance to <b>resist enemy spells</b>.;Gained skill <b>💠 Reflect Magic</b>.;none
-Twisted Fairyland;🪆;Sinister Idol;Item-Trinket;0;0;0;0;0;0;0;<b>Artifact</b>;<b>🪬 Curse</b> gets 33% chance to <b>🧬 Polymorph</b>.<br>Transform the enemy to a random critter.;Gained skill <b>🧬 Polymorph</b>.;none
-Twisted Fairyland;🪶;Raptor Feather;Item-Trinket;0;0;0;0;0;0;0;<b>Artifact</b>;Provides a new skill <b>♻️ Quick Reflexes</b>.<br>33% chance to restore <b>🟢 Energy</b> on action.;Gained skill <b>♻️ Quick Reflexes</b>.;none
-Twisted Fairyland;🔮;Radiating Oracle;Item-Trinket;0;0;0;0;0;0;0;<b>Artifact</b>;Provides a new skill <b>👁️ Vivid Dream</b>.<br>33% chance for +1 <b>🔵 Mana</b> on <b>💤 Sleep</b>.;Gained skill <b>👁️ Vivid Dream</b>.;none
+Twisted Fairyland;💠;Crystal Shield;Item-Trinket;0;0;0;0;0;0;0;<b>Artifact</b>;Provides a new skill <b>💠 Reflect Magic</b>.<br>50% chance to <b>resist enemy spells</b>.;Gained skill <b>💠 Reflect Magic</b>.;none
+Twisted Fairyland;🪆;Sinister Idol;Item-Trinket;0;0;0;0;0;0;0;<b>Artifact</b>;<b>🪬 Curse</b> gets 50% chance to <b>🧬 Polymorph</b>.<br>Transform the enemy to a random critter.;Gained skill <b>🧬 Polymorph</b>.;none
+Twisted Fairyland;🪶;Raptor Feather;Item-Trinket;0;0;0;0;0;0;0;<b>Artifact</b>;Provides a new skill <b>♻️ Quick Reflexes</b>.<br>50% chance to restore <b>🟢 Energy</b> on action.;Gained skill <b>♻️ Quick Reflexes</b>.;none
+Twisted Fairyland;🔮;Radiating Oracle;Item-Trinket;0;0;0;0;0;0;0;<b>Artifact</b>;Provides a new skill <b>👁️ Vivid Dream</b>.<br>50% chance for +1 <b>🔵 Mana</b> on <b>💤 Sleep</b>.;Gained skill <b>👁️ Vivid Dream</b>.;none
 Twisted Fairyland;🀄️;Life-Stealing Rune;Item-Trinket;0;0;0;0;0;0;0;<b>Artifact</b>;Provides a new skill <b>🩸 Steal Life</b>.<br>10% chance <b>⚔️ Attack</b> steals <b>+1 ❤️ Health</b>.;Gained 10% chance to <b>🩸 Steal Life</b>.;none
 Twisted Fairyland;⚡️;Lightning Bolt;Item-Weapon;0;0;0;0;0;2;0;<b>Artifact</b>;Weapon once wielded by the king of gods.<br><b>⚡️ Cast</b> lighting bolts</b>, <b>+2 🔵 Mana</b>.;Gained <b>⚡️ Lightning Bolt</b> and;none
 Twisted Fairyland;🍭;Candy Wand;Item-Weapon;0;0;0;0;0;2;0;<b>Artifact</b>;A rainbow-colored wand sparkling with power.<br>Provides <b>+2 🔵 Mana</b>.;The old hag won't be happy.;none
@@ -1131,7 +1128,7 @@ River of Sorrows;🦑;Sinister Squidling;Small;1;2;1;0;-1;0;0;Cephalopod;Wriggle
 River of Sorrows;🦐;Twisted Shrimp;Small;1;1;2;0;-1;0;0;Arthropod;Goes for your blood like crazy.<br>;A thousand small cuts from a small thing.;none
 River of Sorrows;🪱;Overgrown Seaworm;Small;2;1;1;0;-1;0;0;Arthropod;Longer than it has any right to be.<br>;Got crushed from the outside in.;none
 River of Sorrows;🪱;Parasitic Maggot;Small;1;2;1;0;-1;0;0;Arthropod;Smaller than a thumb, persistent as a grudge.<br>;Became unwilling shelter.;none
-River of Sorrows;🪱;Nasty Leech;Small;2;3;1;0;-1;0;0;Arthropod;Attaches without warning and won't hear reason.<br>;Bled out too slowly to stop.;none
+River of Sorrows;🪱;Nasty Leech;Small;2;3;1;0;-1;0;0;Arthropod;Latches on and won't hear reason.<br>;Bled out too slowly to stop.;none
 River of Sorrows;🪱;Thirsty Leech;Small;1;2;1;0;-1;0;0;Arthropod;Follows warmth into waters that lost it long ago.<br>;Got sucked blood-dry.;none
 River of Sorrows;🪱;Bloodsucking Leech;Small;1;3;1;0;-1;0;0;Arthropod;Wraps around whatever it finds and waits.<br>;Drained to the last drop.;none
 River of Sorrows;🦠;Grave Swarm;Small;1;1;1;0;-1;0;0;Dead Plankton;Barely visible and absolutely everywhere.<br>;Consumed from the outside in.;none
@@ -1187,7 +1184,7 @@ River of Sorrows;🐋;Mire Hulk;Heavy;6;3;3;0;0;0;0;River Leviathan;Too large to
 
 River of Sorrows;🐆;River Stalker;Swift;4;3;2;0;0;0;0;Bank Predator;Paces the bank, each step soft as grief.<br>;Taken from behind like you were expected.;none
 River of Sorrows;🐍;Aquatic Snake;Swift;3;4;2;0;-1;0;1;Fearless Predator;Charges forward no matter the consequences.<br>;Died of lethal venom.;none
-River of Sorrows;🐬;Laughing Scumbag;Swift;4;1;3;0;4;0;0;Sinister Mammal;Makes annoying squeaking noises.<br>;Outsmarted by a dolphin.;none
+River of Sorrows;🐬;Laughing Scumbag;Swift;4;2;3;0;4;0;0;Sinister Mammal;Makes annoying squeaking noises.<br>;Outsmarted by a dolphin.;none
 River of Sorrows;🧜🏻‍♂️;Pale Drifter;Swift;4;3;2;0;2;0;0;Ghostly Current;Cuts through grief-thickened water without slowing.<br>;Gone before you hit the water.;none
 River of Sorrows;🐍;Sorrow Eel;Swift;5;3;3;0;-1;0;0;Tainted Snake;The water ripples before you can see it.<br>;Devoured by a water snake.;none
 
@@ -1200,7 +1197,7 @@ River of Sorrows;🧜‍♀️;Silt Siren;Demon;3;1;3;0;3;1;0;Luring Shade;Voice
 River of Sorrows;🦭;Possessed Seal;Demon;3;3;3;1;-1;0;0;Cursed Animal;Something is deeply wrong with its eyes.<br>;Got mauled by an angry seal;none
 River of Sorrows;🦅;River Harpy;Demon;3;3;2;0;2;0;0;Winged Threat;Swoops low over the water without a sound.<br>;Claws found their mark;none
 
-River of Sorrows;🧟‍♂️;Drowned Sailor;Undead;4;2;2;0;-1;1;0;Waterlogged Corpse;Still wanders the shallows, unable to rest.<br>;Pulled under by cold dead hands;none
+River of Sorrows;🧟‍♂️;Drowned Sailor;Undead;4;2;2;0;-1;0;0;Waterlogged Corpse;Still wanders the shallows, unable to rest.<br>;Pulled under by cold dead hands;none
 River of Sorrows;🦜;Rotten Polly;Undead;3;1;3;0;0;0;0;Forsaken Bird;Used to be beautiful, not anymore.<br>;Got both eyes pecked out.;none
 River of Sorrows;💀;Wrecked Captain;Undead;5;2;3;0;2;0;0;Lost Authority;The ship is gone. He's still giving orders.<br>;Outranked you to death.;none
 River of Sorrows;☠️;Pale Corsair;Undead;5;4;1;0;-1;0;0;Sunken Pirate;Sailed these waters long before they turned sad.<br>;Swords don't care who holds them.;none
@@ -1252,7 +1249,7 @@ River of Sorrows;🪖;Cracked Helm;Item-Head;-1;0;0;0;0;0;1;Damaged Protection;P
 River of Sorrows;📦;Schrödinger's Box;Item;0;0;0;0;0;0;0;<b>Artifact</b>;Provides a new skill <b>📦 Dead or Alive</b>.<br>50% chance to <b>avoid death</b> on fatal hit.;Gained skill <b>📦 Dead or Alive</b>.;quest_first
 River of Sorrows;🪣;Sturdy Bucket;Item-Head;0;0;0;0;0;0;0;<b>Artifact</b>;Possibly can serve as makeshift helmet.<br>Provides <b>+1 🔰 Defence</b>.;Its not stupid if it works! <b>+1 🔰</b>;fish_no_bait_30
 River of Sorrows;🐴;Horse Mask;Item-Head;0;0;0;0;0;0;0;<b>Artifact</b>;Grants special attribute <b>🐴 Prey Appearance</b>.<br><b>Enemies are passive</b> until attacked.;Gained attribute <b>🐴 Prey Appearance</b>.;gamble_lose_first
-River of Sorrows;🧵;Lucky Fishline;Item;0;0;0;0;0;0;0;<b>Artifact</b>;33% chance to <b>keep the <b> 🪱 Bait</b> when fishing</b>.<br>;Reinforced your fishing pole.;fish_bait_30
+River of Sorrows;🧵;Lucky Fishline;Item;0;0;0;0;0;0;0;<b>Artifact</b>;50% chance to <b>keep the <b> 🪱 Bait</b> when fishing</b>.<br>;Reinforced your fishing pole.;fish_bait_30
 River of Sorrows;♥️;Extra Life;Item-Trinket;0;0;0;0;0;0;0;<b>Artifact</b>;Provides a new skill <b>💀 Cheat Death</b>.<br>Get a <b>second chance to live</b> upon dying.;Gained skill <b>💀 Cheat Death</b>.;reincarnated_first
 River of Sorrows;📼;Rewind Tape;Item-Trinket;0;0;0;0;0;0;0;<b>Artifact</b>;Provides a new skill <b>💀 Cheat Death</b>.<br>Get a <b>second chance to live</b> upon dying.;Gained skill <b>💀 Cheat Death</b>.;destiny_10
 River of Sorrows;📣;Loud Vocalizer;Item-Trinket;0;0;0;0;0;0;0;<b>Artifact</b>;Makes you kind of hard to ignore.<br><b>💬 Speak</b> gets <b>2x more effective</b>.;Your voice got <b>📣 Very Loud</b>!;spoke_boss
@@ -1265,7 +1262,6 @@ River of Sorrows;📎;Universal Key;Item;0;0;0;0;0;0;0;<b>Artifact</b>;Provides 
 River of Sorrows;🐷;Pig Mask;Item-Head;0;0;0;0;0;0;0;<b>Artifact</b>;Grants special skill <b>🐷 Pig Digestion</b>.<br><b>Negative food effects don't affect you.</b>;Gained skill <b>🐷 Pig Digestion</b>.;eat_hazardous
 River of Sorrows;🌀;Shedding Stone;Item-Trinket;0;0;0;0;1;1;0;<b>Artifact</b>;Worn smooth by hands that kept changing.<br>Provides <b>+1 🔵 Mana</b> and <b>+1 🧠 Intellect</b>.;You feel slightly less fixed.;meditate_first
 River of Sorrows;🧬;Fused Marrow;Item-Trinket;1;0;0;0;0;1;0;Identity Remnants;Extracted from two different bodies.<br>Provides <b>+1 ❤️ Health</b> and <b>+1 🔵 Mana</b>.;The borrowed lives ran out.;transmute_first
-River of Sorrows;💸;Empty Pouch;Item-Trinket;0;1;0;1;0;0;0;<b>Artifact</b>;Nothing left to lose. That's its own kind of freedom.<br>Provides <b>+1 ⚔️ Attack</b> and <b>+1 🍀 Luck</b>.;Nothing left. That's enough.;spent_10
 River of Sorrows;〽️;Echo Blade;Item-Weapon;0;2;0;0;0;0;0;<b>Artifact</b>;Taken from a hand that already failed.<br>Provides <b>+2 ⚔️ Attack</b>.;It still remembers how to cut.;rival_kill
 River of Sorrows;👒;Fishing Hat;Item-Head;0;0;0;2;0;0;0;Signature Piece;Originally comes from a goblin fishing event.<br>Provides <b>+2 🍀 Luck</b>.;Sweet memories of the jungle;fish_no_bait_first
 
@@ -1458,7 +1454,7 @@ Shrouded Necropolis;🦇;Thirsty Bat;Swift;4;2;2;0;5;0;0;Flying Mammal;Its screa
 Shrouded Necropolis;🦌;Stag Wraith;Swift;4;3;1;0;4;1;0;Ethereal Beast;Antlers glow with spectral fire.<br>;Spectral antlers passed through you.;none
 Shrouded Necropolis;🐺;Ghastly Wolf;Swift;4;3;2;0;10;3;0;Apex Predator;Winding up for a powerful attack.<br>;Got totally ripped apart!;none
 
-Shrouded Necropolis;🐼;Zombie Bear;Undead;5;3;2;0;-1;1;0;Restless Body;It surely carries lot of diseases.<br>;Torn apart by rotting claws.;none
+Shrouded Necropolis;🐼;Zombie Bear;Undead;5;3;2;0;-1;0;0;Restless Body;It surely carries lot of diseases.<br>;Torn apart by rotting claws.;none
 Shrouded Necropolis;🧟;Ghoul Brute;Undead;2;4;2;0;-1;0;0;Cursed Creature;Reeking of death and decay.<br>;Ripped limb from limb.;none
 Shrouded Necropolis;🧟;Tainted Zombie;Undead;4;2;2;0;-1;0;0;Restless Body;It surely carries lot of diseases.<br>;Rotten to the bones;none
 Shrouded Necropolis;🧟‍♂️;Barbed Penitent;Undead;4;3;1;0;0;0;0;Cursed Dead;Staggers forward wrapped in rusted wire.<br>;Devoured by hungry undead.;none
@@ -1499,7 +1495,6 @@ Shrouded Necropolis;🥋;Budo Kimono;Item-Chest;1;0;1;0;0;0;0;Fancy Gown;Made fo
 Shrouded Necropolis;🔪;Bloody Knife;Item-Weapon;0;1;0;-2;0;0;0;Evidence of Sin;The blade still looks sharp.<br>Provides <b>+1 ⚔️ Damage</b> for <b>-2 🍀 Luck</b>.;Got blood on your hands!;kill_first
 Shrouded Necropolis;🌀;Shedding Stone;Item-Trinket;0;0;0;0;1;1;0;<b>Artifact</b>;Worn smooth by hands that kept changing.<br>Provides <b>+1 🔵 Mana</b> and <b>+1 🧠 Intellect</b>.;You feel slightly less fixed.;meditate_first
 Shrouded Necropolis;🧬;Fused Marrow;Item-Trinket;1;0;0;0;0;1;0;Identity Remnants;Extracted from two different bodies.<br>Provides <b>+1 ❤️ Health</b> and <b>+1 🔵 Mana</b>.;The borrowed lives ran out.;transmute_first
-Shrouded Necropolis;💸;Empty Pouch;Item-Trinket;0;1;0;1;0;0;0;<b>Artifact</b>;Nothing left to lose. That's its own kind of freedom.<br>Provides <b>+1 ⚔️ Attack</b> and <b>+1 🍀 Luck</b>.;Nothing left. That's enough.;spent_10
 Shrouded Necropolis;〽️;Echo Blade;Item-Weapon;0;2;0;0;0;0;0;<b>Artifact</b>;Taken from a hand that already failed.<br>Provides <b>+2 ⚔️ Attack</b>.;It still remembers how to cut.;rival_kill
 
 //Unique
@@ -1548,7 +1543,7 @@ Fishing;🪔;Floating Flame;Checkpoint;0;0;0;0;0;0;0;Sanctuary;Thoroughly warms 
 
 Fishing;🔱;Titanslayer Trident;Item-Weapon;0;2;0;0;0;0;0;<b>Artifact</b>;Held by the ocean god a long time ago.<br>Provides <b>+2 ⚔️ Damage</b>.;Grabbed a legendary weapon!;fish_legendary_first
 Fishing;🪣;Sturdy Bucket;Item-Head;0;0;0;0;0;0;0;<b>Artifact</b>;Possibly can serve as makeshift helmet.<br>Provides <b>+1 🔰 Defence</b>.;Its not stupid if it works! <b>+1 🔰</b>;fish_no_bait_30
-Fishing;🧵;Lucky Fishline;Item;0;0;0;0;0;0;0;<b>Artifact</b>;33% chance to <b>keep the <b> 🪱 Bait</>b when fishing</b>.<br>;Reinforced your fishing pole.;fish_bait_30
+Fishing;🧵;Lucky Fishline;Item;0;0;0;0;0;0;0;<b>Artifact</b>;50% chance to <b>keep the <b> 🪱 Bait</>b when fishing</b>.<br>;Reinforced your fishing pole.;fish_bait_30
 Fishing;🐴;Horse Mask;Item-Head;0;0;0;0;0;0;0;<b>Artifact</b>;Grants special attribute <b>🐴 Prey Appearance</b>.<br><b>Enemies are passive</b> until attacked.;Gained attribute <b>🐴 Prey Appearance</b>.;gamble_lose_first
 Fishing;♥️;Extra Life;Item-Trinket;0;0;0;0;0;0;0;<b>Artifact</b>;Provides a new skill <b>💀 Cheat Death</b>.<br>Get a <b>second chance to live</b> upon dying.;Gained skill <b>💀 Cheat Death</b>.;reincarnated_first
 Fishing;📼;Rewind Tape;Item-Trinket;0;0;0;0;0;0;0;<b>Artifact</b>;Provides a new skill <b>💀 Cheat Death</b>.<br>Get a <b>second chance to live</b> upon dying.;Gained skill <b>💀 Cheat Death</b>.;destiny_10
@@ -1581,7 +1576,7 @@ Fishing;✂️;Sharp Scissors;Item-Weapon;0;1;0;0;0;0;0;Makeshift Weapon;One can
 Fishing;⛓️;Rusted Chain;Item-Weapon;-1;1;0;0;0;0;0;Withered Tool;Potentially deadly, but tricky to wield.<br>Provides <b>+1 ⚔️ Attack</b> for <b> -1 💔 Health</b>;Ouch, snaped your skin;none
 Fishing;🩸;Blood-drop Compass;Item-Trinket;-1;1;0;0;0;0;0;Hunting Relic;Always points towards possible pray.<br>Provides <b>+1 ⚔️ Attack</b> for <b> -1 💔 Health</b>.;It twitched in your palm.;none
 
-Fishing;🕶;Cool Sunglasses;Item-Head;0;0;0;0;2;0;0;Flashy Accessory;Anyone can be a hero with these.<br>Provides <b>+2 🧠 Charisma</b>.;Feels a lot cooler.;none
+Fishing;🕶;Cool Sunglasses;Item-Head;0;0;0;0;2;0;0;Flashy Accessory;Anyone can be a hero with these.<br>Provides <b>+2 🧠 Charisma</b>.;You feel a lot cooler.;none
 Fishing;🐚;Pearlescent Shell;Item;0;0;0;0;2;0;0;Rare Souvenir;The previous inhabitant has moved away.<br>Provides <b>+2 🧠 Charisma</b>.;Picked up a shiny shell.;none
 Fishing;👙;Sexy Bikini;Item-Chest;0;0;2;0;-3;0;0;Swimming Equipment;Improves movement, draws attention a lot.<br>Provides <b>+2 🟢 Energy</b> for <b>-3 🧠 Charisma</b>.;All eyes are on you!;none
 Fishing;👓;Reading Glasses;Item-Head;0;0;0;0;2;0;0;Eyesight Boost;Usually improves one's situational awareness.<br>Provides <b>+2 🧠 Perception</b>.;Immediately felt a difference.;none

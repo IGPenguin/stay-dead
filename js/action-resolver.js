@@ -1,6 +1,7 @@
 //Game logic
-function resolveAction(button){ //Yeah, this is bad, like really bad
+function resolveAction(clickedButton){ //Yeah, this is bad, like really bad
   return function(){ //Well, stackoverflow comes to the rescue
+    var button = clickedButton;
     // Consume the action-bar skill check result (null = no check, true/false = pass/fail)
     var _skillOK = actionBarSuccess;
     actionBarSuccess = null;
@@ -788,7 +789,7 @@ function resolveAction(button){ //Yeah, this is bad, like really bad
           case "Mirror":
           case "Prop":
             isFishing=false;
-            if (corpseState != "" && areaName === "Shrouded Necropolis") {
+            if (corpseState != "" && isKillEnding) {
               logPlayerAction(actionString, '<span style="color:#FFD940;">Picked her up to caress one last time.</span>');
               nextEncounter();
               break;
@@ -1183,26 +1184,9 @@ function resolveAction(button){ //Yeah, this is bad, like really bad
           }
 
           if (enemyType=="Upgrade"){
-            var _fateStats = [
-              { gain: function(){ playerHpMax+=2; playerHp+=2; },
-                lose: function(){ playerHpMax=Math.max(1,playerHpMax-1); if(playerHp>playerHpMax)playerHp=playerHpMax; }, icon:'❤️' },
-              { gain: function(){ playerStaMax+=2; playerSta+=2; },
-                lose: function(){ playerStaMax=Math.max(0,playerStaMax-1); if(playerSta>playerStaMax)playerSta=playerStaMax; }, icon:'🟢' },
-              { gain: function(){ playerMgkMax+=2; playerMgk+=2; },
-                lose: function(){ playerMgkMax=Math.max(0,playerMgkMax-1); if(playerMgk>playerMgkMax)playerMgk=playerMgkMax; }, icon:'🔵' },
-              { gain: function(){ playerLck+=2; },
-                lose: function(){ playerLck=Math.max(0,playerLck-1); }, icon:'🍀' },
-              { gain: function(){ playerInt+=2; },
-                lose: function(){ playerInt=Math.max(0,playerInt-1); }, icon:'🧠' }
-            ];
-            var _fGain = Math.floor(Math.random() * _fateStats.length);
-            var _fLose;
-            do { _fLose = Math.floor(Math.random() * _fateStats.length); } while (_fLose === _fGain);
-            _fateStats[_fGain].gain();
-            _fateStats[_fLose].lose();
-            logPlayerAction(actionString, getFateLog()+" <b>+2 "+_fateStats[_fGain].icon+" -1 "+_fateStats[_fLose].icon+"</b>");
-            displayPlayerGainedEffect();
-            displayPlayerEffect("🎲");
+            logPlayerAction(actionString,"Got blessed with <b>+1 🍀 Luck</b>.");
+            displayPlayerCannotEffect();
+            playerChangeStats(0, 0, 0, 1, 0, 0,0,"n/a",false,false);
             isFishing=false;
             animateFlipNextEncounter();
             break;
@@ -1650,9 +1634,26 @@ function resolveAction(button){ //Yeah, this is bad, like really bad
         }
 
         if (enemyType=="Upgrade"){
-            logPlayerAction(actionString,"Got blessed with <b>+1 🍀 Luck</b>.");
-            displayPlayerCannotEffect();
-            playerChangeStats(0, 0, 0, 1, 0, 0,0,"n/a",false,false);
+            var _fateStats = [
+              { gain: function(){ playerHpMax+=2; playerHp+=2; },
+                lose: function(){ playerHpMax=Math.max(1,playerHpMax-1); if(playerHp>playerHpMax)playerHp=playerHpMax; }, icon:'❤️' },
+              { gain: function(){ playerStaMax+=2; playerSta+=2; },
+                lose: function(){ playerStaMax=Math.max(0,playerStaMax-1); if(playerSta>playerStaMax)playerSta=playerStaMax; }, icon:'🟢' },
+              { gain: function(){ playerMgkMax+=2; playerMgk+=2; },
+                lose: function(){ playerMgkMax=Math.max(0,playerMgkMax-1); if(playerMgk>playerMgkMax)playerMgk=playerMgkMax; }, icon:'🔵' },
+              { gain: function(){ playerLck+=2; },
+                lose: function(){ playerLck=Math.max(0,playerLck-1); }, icon:'🍀' },
+              { gain: function(){ playerInt+=2; },
+                lose: function(){ playerInt=Math.max(0,playerInt-1); }, icon:'🧠' }
+            ];
+            var _fGain = Math.floor(Math.random() * _fateStats.length);
+            var _fLose;
+            do { _fLose = Math.floor(Math.random() * _fateStats.length); } while (_fLose === _fGain);
+            _fateStats[_fGain].gain();
+            _fateStats[_fLose].lose();
+            logPlayerAction(actionString, getFateLog()+" <b>+2 "+_fateStats[_fGain].icon+" -1 "+_fateStats[_fLose].icon+"</b>");
+            displayPlayerGainedEffect();
+            displayPlayerEffect("🎲");
             isFishing=false;
             animateFlipNextEncounter();
             break;
@@ -1775,7 +1776,7 @@ function resolveAction(button){ //Yeah, this is bad, like really bad
             displayEnemyCannotEffect();
             displayEnemyEffect("🪬");
 
-            if (procAbilityChance("🪆",33)){
+            if (procAbilityChance("🪆",50)){
               var animalEmoji = chooseFrom(["🐁","🦔","🐸","🦎","🐀","🪱","🪰","🪲","🪳","🐌"]);
               var _polyXP = parseInt(playerGainXP(1, GAME_CONFIG.rewardXpSmall * playerLevel, ""));
               logAction("🪆 ▸ ‍🧬 <b>Polymorphed</b> them into a critter -2 🔵 " + decorateStatusText("", "+" + _polyXP + " XP", colorGold));
@@ -2486,7 +2487,7 @@ function resolveAction(button){ //Yeah, this is bad, like really bad
               AchievementManager.check('fish_bait');
               playerUseItem(bait,"Fished out something using "+bait+decorateStatusText(""," +"+(GAME_CONFIG.rewardXpSmall*playerLevel)+" XP",colorGold),"");
               playerGainXP(1,GAME_CONFIG.rewardXpSmall*playerLevel,"");
-              if (procAbilityChance("🧵",33)) {
+              if (procAbilityChance("🧵",50)) {
                 logAction("🧵 ▸ "+bait+" Luckily the bait remained hooked.");
                 displayPlayerEffect("🧵");
                 playerLootString+=bait;
@@ -2916,14 +2917,13 @@ function resolveAction(button){ //Yeah, this is bad, like really bad
                 AchievementManager.check('quest_complete');
               }
               var gainedXP=playerGainXP(_crit === 'success' ? 1.2 : 1, GAME_CONFIG.rewardXp*playerLevel,"");
-              if (_crit === 'success') {
-                logPlayerAction(actionString, "Spoke with great conviction! " + decorateStatusText("","+"+gainedXP+" XP",colorGold), colorYellow);
-              } else if (parseInt(enemyHp+enemyAtk+enemySta+enemyLck+enemyInt+enemyMgk+enemyMsg)==0) {
-                logPlayerAction(actionString,enemyMsg+" " + decorateStatusText("","+"+gainedXP+" XP",colorGold));
+              var _friendMsg = (_crit === 'success' ? "Spoke with great conviction!" : enemyMsg) + " " + decorateStatusText("","+"+gainedXP+" XP",colorGold);
+              if (enemyHp+enemyAtk+enemySta+enemyLck+enemyInt+enemyMgk+enemyDef == 0) {
+                logPlayerAction(actionString, _friendMsg, _crit === 'success' ? colorYellow : undefined);
                 nextEncounter();
                 isFishing=false;
               } else {
-                playerChangeStats(enemyHp,enemyAtk,enemySta,enemyLck,enemyInt,enemyMgk,enemyDef,enemyMsg+" " + decorateStatusText("","+"+gainedXP+" XP",colorGold),true);
+                playerChangeStats(enemyHp,enemyAtk,enemySta,enemyLck,enemyInt,enemyMgk,enemyDef,_friendMsg,true);
                 isFishing=false;
                 displayPlayerEffect("✨");
               }

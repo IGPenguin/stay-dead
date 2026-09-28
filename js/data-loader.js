@@ -77,6 +77,7 @@ function _doStartGame(isContinue) {
 
     resetSeenEncounters();
     if (typeof TelemetryManager !== 'undefined') {
+      TelemetryManager.bumpRunIndex(); // must precede the send so run_start carries the new index
       TelemetryManager.send('run_start', '');
     }
     if (typeof RivalManager !== 'undefined') RivalManager.fetchPool();

@@ -122,12 +122,17 @@ var Menu = (function () {
 
   // ── Screen routing ─────────────────────────────────────────────────────────
 
+  var _lastScreen = 'menu_main_screen'; // read by TelemetryManager for the menu_leave payload
+
   function _doShowScreen(id) {
     SCREENS.forEach(function (s) {
       document.getElementById(s).style.display = (s === id) ? '' : 'none';
     });
+    _lastScreen = id;
     window.scrollTo(0, -128);
   }
+
+  function getCurrentScreen() { return _lastScreen; }
 
   // Always fades between screens (only used for in-menu navigation, never from show()).
   function _showScreen(id) {
@@ -967,7 +972,7 @@ var Menu = (function () {
             + '</h5>';
         }
         var unlockLine = a.unlock
-          ? '<h5 style="margin:4px 0 4px 0; font-style:normal; font-size:13px; font-weight:400; color:#ffffff; text-align:left;">' + a.unlock + '</h5>'
+          ? '<h5 style="margin:4px 0 4px 0; font-style:normal; font-size:13px; line-height:14px; font-weight:400; color:#ffffff; text-align:left;">' + a.unlock + '</h5>'
           : '<h5 style="margin:4px 0 4px 0; opacity:0.6; font-style:normal; font-size:13px; font-weight:400; color:#CCCCCC; text-align:left;">Carved into who you are.</h5>';
         entry.innerHTML =
           '<div style="display:flex; align-items:center; gap:12px; padding:12px 0px 8px 16px; margin-bottom:-8px;">'
@@ -1683,5 +1688,6 @@ var Menu = (function () {
     _animateLogo();
   }
 
-  return { init: init, show: show, hide: hide, showMemories: showMemories, rollOrigins: _rollOrigins };
+  return { init: init, show: show, hide: hide, showMemories: showMemories, rollOrigins: _rollOrigins,
+           getCurrentScreen: getCurrentScreen };
 })();

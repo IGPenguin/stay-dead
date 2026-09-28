@@ -169,10 +169,11 @@ Rarity is **calculated** from stats — never stored in a CSV column — unless 
 
 | Script | What it runs |
 |--------|-------------|
-| `bash scripts/test-all.sh` | All three Playwright specs (boot, encounters, rarity) |
+| `bash scripts/test-all.sh` | All four Playwright specs (boot, encounters, rarity, telemetry) |
 | `bash scripts/test-boot.sh` | Boot spec only |
 | `bash scripts/test-rarity.sh` | Rarity spec only |
 | `bash scripts/test-types.sh` | Types spec only |
+| `bash scripts/test-telemetry.sh` | Telemetry spec only (context pack, run_exit, menu_leave, active playtime) |
 | `bash scripts/validate-all.sh` | All static validators (JS syntax, CSV, HTML) |
 | `bash scripts/validate-csv.sh` | CSV field counts, emoji, stat values, text lengths |
 | `bash scripts/validate-html.sh` | HTML tag balance, unclosed brackets, duplicate IDs |
@@ -188,6 +189,7 @@ Playwright config targets a mobile viewport (iPhone 14 Pro, 393×852) and reuses
 | `boot-test.yml` | Playwright: game boots and title screen renders |
 | `encounter-test.yml` | Playwright: encounter CSV rows load correctly |
 | `rarity-test.yml` | Playwright: rarity tier distribution end-to-end |
+| `telemetry-test.yml` | Playwright: telemetry payload pack, page-hide events, active playtime |
 
 ## Branching & Deployment
 

@@ -1,10 +1,8 @@
-## ver. 06/13/26 @ 08:58 PM
-Welcome to Open Beta! 🤘
----
-The world didn't stop when you died.
-Corruption spreads, you have to heal it.
----
-Enjoy your journey! 
+## ver. 09/28/26 @ 11:28 AM
+🛡 Bump legendary items triggers to 50%
+🐾 Breather after taming a pet
+📖 UI, text and menu fixes
+⚔️ Enemy stats rebalanced
 
 ## ver. 06/13/26 @ 08:57 PM
 🔧 Fix game screen layout for small res.

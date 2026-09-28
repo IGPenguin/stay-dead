@@ -75,8 +75,16 @@ function visitLinkedIn(){
 }
 
 // Shared entry point — accepts any pre-built plain text string.
+// Google Forms answers 400 once the prefilled URL passes ~8 KB
+var FEEDBACK_LOG_MAX_ENCODED = 5000;
+
 function openFeedbackForm(text) {
-  var gameLog = encodeURIComponent(text.replaceAll('<b>','').replaceAll('</b>','').replaceAll(emptySpace,'   '));
+  var lines = text.replace(/<[^>]*>/g, '').replaceAll(emptySpace, '   ').split('\n');
+  var bodyStart = Math.max(0, lines.indexOf('') + 1);
+  while (encodeURIComponent(lines.join('\n')).length > FEEDBACK_LOG_MAX_ENCODED && lines.length > bodyStart + 1) {
+    lines.splice(bodyStart, 1);
+  }
+  var gameLog = encodeURIComponent(lines.join('\n'));
   var nickname = '';
   try { nickname = localStorage.getItem('playerNickname') || ''; } catch (e) {}
 

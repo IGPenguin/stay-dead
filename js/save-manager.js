@@ -79,6 +79,10 @@ var SaveManager = (function () {
         encounterCount:        encounterCount,
         scoreBaselineStats:    scoreBaselineStats,
         runStartTimestamp:     runStartTimestamp,
+        // Banked active-play time only. playtimeSegmentStart is deliberately NOT saved —
+        // it is re-anchored on restore so the gap between sessions never counts as playtime.
+        playtimeBankedMs:      getActivePlaytimeMs(),
+        playerRevivesThisRun:  playerRevivesThisRun,
         playerOriginName:      playerOriginName,
         adventureEndReason:    adventureEndReason,
         playerCritSuccesses:     playerCritSuccesses,
@@ -174,6 +178,10 @@ var SaveManager = (function () {
     encounterCount          = s.encounterCount      || 0;
     scoreBaselineStats      = s.scoreBaselineStats  || 8;
     runStartTimestamp       = s.runStartTimestamp   || Date.now();
+    // Re-anchor the live segment to now: the idle gap since the save must not count.
+    playtimeBankedMs        = s.playtimeBankedMs    || 0;
+    playtimeSegmentStart    = Date.now();
+    playerRevivesThisRun    = s.playerRevivesThisRun || 0;
     playerOriginName        = s.playerOriginName    || '';
     adventureEndReason      = s.adventureEndReason;
     playerCritSuccesses     = s.playerCritSuccesses     || 0;
