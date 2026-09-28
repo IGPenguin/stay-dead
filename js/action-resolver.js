@@ -33,10 +33,6 @@ function resolveAction(clickedButton){ //Yeah, this is bad, like really bad
     animateUIElement(buttonUIElement,"animate__pulse","0.15");
     actionString = buttonUIElement.innerHTML;
     actionVibrateFeedback(button);
-    // Level-up shows Fortune on the cast slot and Fate on the curse slot
-    if (enemyType == "Upgrade" && (button === 'button_cast' || button === 'button_curse')) {
-      button = (button === 'button_cast') ? 'button_curse' : 'button_cast';
-    }
     runLogAdd("action", {
       btn: button,
       player: {hp: playerHp, hpMax: playerHpMax, sta: playerSta, staMax: playerStaMax,
@@ -1188,26 +1184,9 @@ function resolveAction(clickedButton){ //Yeah, this is bad, like really bad
           }
 
           if (enemyType=="Upgrade"){
-            var _fateStats = [
-              { gain: function(){ playerHpMax+=2; playerHp+=2; },
-                lose: function(){ playerHpMax=Math.max(1,playerHpMax-1); if(playerHp>playerHpMax)playerHp=playerHpMax; }, icon:'❤️' },
-              { gain: function(){ playerStaMax+=2; playerSta+=2; },
-                lose: function(){ playerStaMax=Math.max(0,playerStaMax-1); if(playerSta>playerStaMax)playerSta=playerStaMax; }, icon:'🟢' },
-              { gain: function(){ playerMgkMax+=2; playerMgk+=2; },
-                lose: function(){ playerMgkMax=Math.max(0,playerMgkMax-1); if(playerMgk>playerMgkMax)playerMgk=playerMgkMax; }, icon:'🔵' },
-              { gain: function(){ playerLck+=2; },
-                lose: function(){ playerLck=Math.max(0,playerLck-1); }, icon:'🍀' },
-              { gain: function(){ playerInt+=2; },
-                lose: function(){ playerInt=Math.max(0,playerInt-1); }, icon:'🧠' }
-            ];
-            var _fGain = Math.floor(Math.random() * _fateStats.length);
-            var _fLose;
-            do { _fLose = Math.floor(Math.random() * _fateStats.length); } while (_fLose === _fGain);
-            _fateStats[_fGain].gain();
-            _fateStats[_fLose].lose();
-            logPlayerAction(actionString, getFateLog()+" <b>+2 "+_fateStats[_fGain].icon+" -1 "+_fateStats[_fLose].icon+"</b>");
-            displayPlayerGainedEffect();
-            displayPlayerEffect("🎲");
+            logPlayerAction(actionString,"Got blessed with <b>+1 🍀 Luck</b>.");
+            displayPlayerCannotEffect();
+            playerChangeStats(0, 0, 0, 1, 0, 0,0,"n/a",false,false);
             isFishing=false;
             animateFlipNextEncounter();
             break;
@@ -1655,9 +1634,26 @@ function resolveAction(clickedButton){ //Yeah, this is bad, like really bad
         }
 
         if (enemyType=="Upgrade"){
-            logPlayerAction(actionString,"Got blessed with <b>+1 🍀 Luck</b>.");
-            displayPlayerCannotEffect();
-            playerChangeStats(0, 0, 0, 1, 0, 0,0,"n/a",false,false);
+            var _fateStats = [
+              { gain: function(){ playerHpMax+=2; playerHp+=2; },
+                lose: function(){ playerHpMax=Math.max(1,playerHpMax-1); if(playerHp>playerHpMax)playerHp=playerHpMax; }, icon:'❤️' },
+              { gain: function(){ playerStaMax+=2; playerSta+=2; },
+                lose: function(){ playerStaMax=Math.max(0,playerStaMax-1); if(playerSta>playerStaMax)playerSta=playerStaMax; }, icon:'🟢' },
+              { gain: function(){ playerMgkMax+=2; playerMgk+=2; },
+                lose: function(){ playerMgkMax=Math.max(0,playerMgkMax-1); if(playerMgk>playerMgkMax)playerMgk=playerMgkMax; }, icon:'🔵' },
+              { gain: function(){ playerLck+=2; },
+                lose: function(){ playerLck=Math.max(0,playerLck-1); }, icon:'🍀' },
+              { gain: function(){ playerInt+=2; },
+                lose: function(){ playerInt=Math.max(0,playerInt-1); }, icon:'🧠' }
+            ];
+            var _fGain = Math.floor(Math.random() * _fateStats.length);
+            var _fLose;
+            do { _fLose = Math.floor(Math.random() * _fateStats.length); } while (_fLose === _fGain);
+            _fateStats[_fGain].gain();
+            _fateStats[_fLose].lose();
+            logPlayerAction(actionString, getFateLog()+" <b>+2 "+_fateStats[_fGain].icon+" -1 "+_fateStats[_fLose].icon+"</b>");
+            displayPlayerGainedEffect();
+            displayPlayerEffect("🎲");
             isFishing=false;
             animateFlipNextEncounter();
             break;
