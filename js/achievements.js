@@ -54,7 +54,7 @@ var AchievementManager = (function () {
     { id: 'buy_item_first',      emoji: '⚖️', desc: 'Bought an item from the Shade!', hint: "A fair trade for a fair price.", unlock: 'Unlocked the <b>⚖️ Fence</b> origin.' },
     { id: 'buy_artifact_first',  emoji: '💎', desc: 'Bought an artifact from the Shade!', hint: "An eye for the unusual antiques.", unlock: "Unlocked the <b>🏷️ Merchant's Tag</b>." },
     { id: 'buy_level_first',     emoji: '📈', desc: 'Bought a level up from the Shade!', hint: "Shortcut to power, at a cost.", unlock: 'Unlocked the <b>💰 Profiteer</b> origin.' },
-    { id: 'spent_10',            emoji: '💸', desc: 'Spent 10 Drachmae in total already!', hint: "A loyal customer of the shadows.", unlock: 'Unlocked the <b>💸 Empty Pouch</b> item.' },
+    { id: 'spent_10',            emoji: '💸', desc: 'Spent 10 Drachmae in total already!', hint: "A loyal customer of the shadows." },
 
     { id: 'letter_remember',     emoji: '💌', desc: 'Read a very disturbing writing.', hint: 'Some things are better left in the past.', unlock: 'Unlocked the <b>💘 Lover</b> origin.' },
     { id: 'letter_grab',         emoji: '✉️', desc: 'Kept a disturbing writing with you.', hint: 'Could not bring yourself to leave it.', unlock: 'Unlocked the <b>✉️ Courier</b> origin' },

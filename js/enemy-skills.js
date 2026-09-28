@@ -391,7 +391,7 @@ function enemyCastIfMgk(hit=true,customHitMessage=""){
     enemyMgkLost+=damageAndCost;
     displayEnemyCannotEffect(); //Actually can, but this is just for effect
 
-    if (procAbilityChance("💠",33)){
+    if (procAbilityChance("💠",50)){
       logAction("🪄 ▸ <b>💠 Reflect Magic</b> resisted their spell.");
       displayPlayerEffect("💠");
       return false;

@@ -100,7 +100,38 @@ var actionLog = "";
 var adventureLog = actionLog;
 var adventureEncounterCount = 1;
 var encounterCount = 0;      // total encounters this run; incremented by nextEncounter()
-var runStartTimestamp = 0;   // Date.now() at run start; used for playtime calculation
+var runStartTimestamp = 0;   // Date.now() at run start; wall-clock anchor only — NOT playtime
+
+// ── Active playtime ──────────────────────────────────────────────────────────
+// runStartTimestamp alone measures wall clock, which counts every day a saved run
+// sits idle between sessions (observed: run_end rows reporting 5+ days of "playtime").
+// These track only the time the tab was actually visible.
+//   playtimeSegmentStart = 0 means "paused"; non-zero is the start of the live stretch.
+var playtimeBankedMs     = 0;
+var playtimeSegmentStart = Date.now();
+
+function bankPlaytime() {
+  if (playtimeSegmentStart) playtimeBankedMs += Date.now() - playtimeSegmentStart;
+  playtimeSegmentStart = 0;
+}
+
+function resumePlaytime() {
+  if (!playtimeSegmentStart) playtimeSegmentStart = Date.now();
+}
+
+// Milliseconds of active play this run. Used for persistence — saving the rounded
+// second value would drop sub-second remainder on every redraw() and drift low.
+function getActivePlaytimeMs() {
+  var live = playtimeSegmentStart ? (Date.now() - playtimeSegmentStart) : 0;
+  return Math.max(0, playtimeBankedMs + live);
+}
+
+// Seconds of active play this run. Use this everywhere instead of runStartTimestamp.
+function getActivePlaytime() {
+  return Math.floor(getActivePlaytimeMs() / 1000);
+}
+
+var playerRevivesThisRun = 0; // reincarnations this run; reset in renewPlayer()
 var playerOriginName = '';   // origin name applied at game start; '' = no origin
 var cheatedThisRun = false;  // set by logCheatUse(); reset each new run; blocks score submission
 var scoreBaselineStats = 0; // sum of stats at run start (after origin); subtracted from score formula

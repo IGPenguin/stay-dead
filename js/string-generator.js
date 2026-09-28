@@ -267,7 +267,7 @@ function getPoem(){ //For the letters "Lover's Memento"
 function getBrideOpeningByLove() {
   var accusatory = [
     "You broke me with foul magic.<br>Now I return with justice.",
-    "I died believing in your love.<br>Then I risen, sure of betrayal.",
+    "I died believing in your love.<br>Then I rose, sure of betrayal.",
     "Your love outlived my breath.<br>Then cursed me forever.",
     "You called me back, trembling.<br>Now tremble for what you did.",
     "You begged the gods for me.<br>They released the darkness.",

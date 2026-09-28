@@ -1,6 +1,7 @@
 //Game logic
-function resolveAction(button){ //Yeah, this is bad, like really bad
+function resolveAction(clickedButton){ //Yeah, this is bad, like really bad
   return function(){ //Well, stackoverflow comes to the rescue
+    var button = clickedButton;
     // Consume the action-bar skill check result (null = no check, true/false = pass/fail)
     var _skillOK = actionBarSuccess;
     actionBarSuccess = null;
@@ -32,6 +33,10 @@ function resolveAction(button){ //Yeah, this is bad, like really bad
     animateUIElement(buttonUIElement,"animate__pulse","0.15");
     actionString = buttonUIElement.innerHTML;
     actionVibrateFeedback(button);
+    // Level-up shows Fortune on the cast slot and Fate on the curse slot
+    if (enemyType == "Upgrade" && (button === 'button_cast' || button === 'button_curse')) {
+      button = (button === 'button_cast') ? 'button_curse' : 'button_cast';
+    }
     runLogAdd("action", {
       btn: button,
       player: {hp: playerHp, hpMax: playerHpMax, sta: playerSta, staMax: playerStaMax,
@@ -788,7 +793,7 @@ function resolveAction(button){ //Yeah, this is bad, like really bad
           case "Mirror":
           case "Prop":
             isFishing=false;
-            if (corpseState != "" && areaName === "Shrouded Necropolis") {
+            if (corpseState != "" && isKillEnding) {
               logPlayerAction(actionString, '<span style="color:#FFD940;">Picked her up to caress one last time.</span>');
               nextEncounter();
               break;
@@ -1775,7 +1780,7 @@ function resolveAction(button){ //Yeah, this is bad, like really bad
             displayEnemyCannotEffect();
             displayEnemyEffect("🪬");
 
-            if (procAbilityChance("🪆",33)){
+            if (procAbilityChance("🪆",50)){
               var animalEmoji = chooseFrom(["🐁","🦔","🐸","🦎","🐀","🪱","🪰","🪲","🪳","🐌"]);
               var _polyXP = parseInt(playerGainXP(1, GAME_CONFIG.rewardXpSmall * playerLevel, ""));
               logAction("🪆 ▸ ‍🧬 <b>Polymorphed</b> them into a critter -2 🔵 " + decorateStatusText("", "+" + _polyXP + " XP", colorGold));
@@ -2486,7 +2491,7 @@ function resolveAction(button){ //Yeah, this is bad, like really bad
               AchievementManager.check('fish_bait');
               playerUseItem(bait,"Fished out something using "+bait+decorateStatusText(""," +"+(GAME_CONFIG.rewardXpSmall*playerLevel)+" XP",colorGold),"");
               playerGainXP(1,GAME_CONFIG.rewardXpSmall*playerLevel,"");
-              if (procAbilityChance("🧵",33)) {
+              if (procAbilityChance("🧵",50)) {
                 logAction("🧵 ▸ "+bait+" Luckily the bait remained hooked.");
                 displayPlayerEffect("🧵");
                 playerLootString+=bait;
@@ -2916,14 +2921,13 @@ function resolveAction(button){ //Yeah, this is bad, like really bad
                 AchievementManager.check('quest_complete');
               }
               var gainedXP=playerGainXP(_crit === 'success' ? 1.2 : 1, GAME_CONFIG.rewardXp*playerLevel,"");
-              if (_crit === 'success') {
-                logPlayerAction(actionString, "Spoke with great conviction! " + decorateStatusText("","+"+gainedXP+" XP",colorGold), colorYellow);
-              } else if (parseInt(enemyHp+enemyAtk+enemySta+enemyLck+enemyInt+enemyMgk+enemyMsg)==0) {
-                logPlayerAction(actionString,enemyMsg+" " + decorateStatusText("","+"+gainedXP+" XP",colorGold));
+              var _friendMsg = (_crit === 'success' ? "Spoke with great conviction!" : enemyMsg) + " " + decorateStatusText("","+"+gainedXP+" XP",colorGold);
+              if (enemyHp+enemyAtk+enemySta+enemyLck+enemyInt+enemyMgk+enemyDef == 0) {
+                logPlayerAction(actionString, _friendMsg, _crit === 'success' ? colorYellow : undefined);
                 nextEncounter();
                 isFishing=false;
               } else {
-                playerChangeStats(enemyHp,enemyAtk,enemySta,enemyLck,enemyInt,enemyMgk,enemyDef,enemyMsg+" " + decorateStatusText("","+"+gainedXP+" XP",colorGold),true);
+                playerChangeStats(enemyHp,enemyAtk,enemySta,enemyLck,enemyInt,enemyMgk,enemyDef,_friendMsg,true);
                 isFishing=false;
                 displayPlayerEffect("✨");
               }

@@ -118,7 +118,7 @@ var ScoreManager = (function () {
     var isWin   = endType === 'win' || (typeof endType === 'string' && endType.startsWith('win_'));
     var comps   = _liveComponents(isWin) || _computeComponents(playerLevel||1, 0, 0, 0, 0, playerKarma||1, isWin, typeof GAME_CONFIG !== 'undefined' ? GAME_CONFIG.label : 'Standard', playerCritSuccesses||0, playerCritFails||0, playerFishCatches||0, playerTotalSleepPenalty||0);
     var statsStr = [playerHpMax, playerAtk, playerStaMax, playerLck, playerInt, playerMgkMax, playerDef].join(';');
-    var playtime = Math.floor((Date.now() - (runStartTimestamp || Date.now())) / 1000);
+    var playtime = getActivePlaytime();
     return {
       score:             comps.score,
       nickname:          getNickname() || String(playerName || '?'),
