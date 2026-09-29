@@ -22,6 +22,28 @@
     "Timestamp": "31/07/2026 02:28:32"
   },
   {
+    "userId": "ec4cc0ac-b71b-47d6-94e2-bc601c329510",
+    "nickname": "IGPenguin",
+    "sessionId": "fd0b762a-f6a7-44c3-90d9-2f3377b2d249",
+    "score": 436,
+    "origin": "Hoble",
+    "charName": "Doomed Foundation",
+    "level": "6",
+    "stats": "4;4;4;9;18;3;0",
+    "inventory": "🧧📔🕶🔖📎💌💸🪝💌🔖👞",
+    "companions": "4",
+    "karma": "10",
+    "coins": "3",
+    "difficulty": "💔 Rough",
+    "playtime": "185",
+    "encounterCount": "209",
+    "endType": "win_embrace",
+    "ghostLink": "eyJzY29yZSI6NDM2LCJuaWNrbmFtZSI6IklHUGVuZ3VpbiIsImNoYXJOYW1lIjoiRG9vbWVkIEZvdW5kYXRpb24iLCJvcmlnaW4iOiJIb2JsZSIsImxldmVsIjo2LCJlbmNvdW50ZXJDb3VudCI6MjA5LCJjb21wYW5pb25zIjo0LCJzdGF0cyI6IjQ7NDs0Ozk7MTg7MzswIiwia2FybWEiOjEwLCJkaWZmaWN1bHR5Ijoi8J+SlCBSb3VnaCIsImdhbWVWZXJzaW9uIjoidmVyLiAwOS8yOC8yNiBAIDExOjI4IEFNIiwicGxheXRpbWUiOjE4NSwiZW5kVHlwZSI6Indpbl9lbWJyYWNlIiwiZGF0ZXRpbWUiOiIyMDI2LTA5LTI5VDExOjM0OjMwLjQyNVoiLCJpbnZlbnRvcnkiOiLwn6en8J+TlPCflbbwn5SW8J+TjvCfkozwn5K48J+qnfCfkozwn5SW8J+RniIsImNvbXBhbmlvblN0cmluZyI6IvCfkIjwn6uP8J+mifCfkIciLCJhcmVhIjoiU2hyb3VkZWQgTmVjcm9wb2xpcyIsIm9yaWdpbkVtb2ppIjoi8J+nrCIsImNvaW5zIjozLCJkZWF0aE1lc3NhZ2UiOiLwn5Gw8J+Pu+KAjeKZgO+4jyBcIkRvbid0IHlvdS4uLiBldmVyIGZvcmdldCBtZS5cIiIsInNjb3JlQmFzZWxpbmVTdGF0cyI6MTAsImNyaXRTdWNjZXNzZXMiOjQzLCJjcml0RmFpbHMiOjAsImZpc2hDYXRjaGVzIjo5LCJzbGVlcFBlbmFsdHkiOjB9",
+    "gameVersion": "ver. 09/28/26 @ 11:28 AM",
+    "datetime": "2026-09-29T11:34:30.425Z",
+    "Timestamp": "29/09/2026 13:34:35"
+  },
+  {
     "userId": "fe900698-6b9e-43d2-8a99-0d6d67d652bb",
     "nickname": "IGPenguin",
     "sessionId": "85a47439-f92a-48b0-9c6f-fb6fb88f9c78",
